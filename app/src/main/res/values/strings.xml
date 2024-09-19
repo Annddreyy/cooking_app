@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Cooking App</string>
+    <string name="recipe_of_day_string">Рецепт дня</string>
 </resources>
