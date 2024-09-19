@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#292929"
@@ -21,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Cooking App"
+            android:text="@string/cooking_app_string"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
             android:textSize="28sp" />
@@ -29,20 +30,23 @@
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#221C1C"
+        android:background="#292929"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:id="@+id/main_block"
         android:layout_width="409dp"
         android:layout_height="589dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="71dp">
+        app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar">
 
         <TextView
             android:id="@+id/recipe_of_day_text"
@@ -57,6 +61,7 @@
             android:textSize="24sp" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/recipe_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -64,6 +69,7 @@
             app:cardCornerRadius="8dp">
 
             <LinearLayout
+                android:id="@+id/recipe_card_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -72,10 +78,12 @@
                     android:id="@+id/maffin_card_image"
                     android:layout_width="wrap_content"
                     android:layout_height="200dp"
+                    android:contentDescription="@string/maffins_string"
                     android:scaleType="fitXY"
                     app:srcCompat="@drawable/maffin_card_photo" />
 
                 <LinearLayout
+                    android:id="@+id/recipe_card_information_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -86,16 +94,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="8dp"
-                        android:text="250 kkal."
+                        android:text="@string/kkal_card_string"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/time_card_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:padding="8dp"
-                        android:text="30 мин."
+                        android:text="@string/time_card_string"
                         android:textColor="#FFFFFF"
                         android:textSize="16sp" />
 
