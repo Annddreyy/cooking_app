@@ -11,7 +11,7 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#292929"
+        android:background="#1F2A37"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,93 +25,402 @@
             android:text="@string/cooking_app_string"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="28sp" />
+            android:textSize="24sp" />
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <ScrollView
+        android:id="@+id/scrooll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
+        android:scrollbarSize="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/main_block"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/recipe_of_day_block"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/recipe_of_day_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/recipe_of_day_string"
+                    android:textAlignment="textStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/recipe_card_of_day"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_marginTop="120dp"
+                    app:cardBackgroundColor="#303D42"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:id="@+id/recipe_card_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/maffin_card_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:contentDescription="@string/maffins_string"
+                            android:scaleType="fitXY"
+                            app:srcCompat="@drawable/maffin_card_photo" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="#717171"
+                            android:padding="4dp"
+                            android:paddingStart="6dp"
+                            android:text="Черничные маффины"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp" />
+
+                        <LinearLayout
+                            android:id="@+id/recipe_card_information_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/callories_card_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="4dp"
+                                android:paddingStart="6dp"
+                                android:text="@string/kkal_card_string"
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/time_card_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:padding="4dp"
+                                android:text="@string/time_card_string"
+                                android:textColor="#FFFFFF"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/new_recipes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/new_recipes_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="Новинки"
+                    android:textAlignment="textStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
+
+                <LinearLayout
+                    android:id="@+id/new_recipes_cards"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/recipe_card_of_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="16dp"
+                        android:layout_marginTop="120dp"
+                        app:cardBackgroundColor="#303D42"
+                        app:cardCornerRadius="8dp">
+
+                        <LinearLayout
+                            android:id="@+id/recipe_card_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/maffin_card_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="200dp"
+                                android:contentDescription="@string/maffins_string"
+                                android:scaleType="fitXY"
+                                app:srcCompat="@drawable/maffin_card_photo" />
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="#717171"
+                                android:padding="4dp"
+                                android:paddingStart="6dp"
+                                android:text="Черничные маффины"
+                                android:textColor="#FFFFFF"
+                                android:textSize="18sp" />
+
+                            <LinearLayout
+                                android:id="@+id/recipe_card_information_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/callories_card_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="4dp"
+                                    android:paddingStart="6dp"
+                                    android:text="@string/kkal_card_string"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/time_card_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="4dp"
+                                    android:text="@string/time_card_string"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/recipe_card_of_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="16dp"
+                        android:layout_marginTop="120dp"
+                        app:cardBackgroundColor="#303D42"
+                        app:cardCornerRadius="8dp">
+
+                        <LinearLayout
+                            android:id="@+id/recipe_card_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/maffin_card_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="200dp"
+                                android:contentDescription="@string/maffins_string"
+                                android:scaleType="fitXY"
+                                app:srcCompat="@drawable/maffin_card_photo" />
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="#717171"
+                                android:padding="4dp"
+                                android:paddingStart="6dp"
+                                android:text="Черничные маффины"
+                                android:textColor="#FFFFFF"
+                                android:textSize="18sp" />
+
+                            <LinearLayout
+                                android:id="@+id/recipe_card_information_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/callories_card_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="4dp"
+                                    android:paddingStart="6dp"
+                                    android:text="@string/kkal_card_string"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/time_card_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="4dp"
+                                    android:text="@string/time_card_string"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/recipe_card_of_day"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="16dp"
+                        android:layout_marginTop="120dp"
+                        app:cardBackgroundColor="#303D42"
+                        app:cardCornerRadius="8dp">
+
+                        <LinearLayout
+                            android:id="@+id/recipe_card_layout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:id="@+id/maffin_card_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="200dp"
+                                android:contentDescription="@string/maffins_string"
+                                android:scaleType="fitXY"
+                                app:srcCompat="@drawable/maffin_card_photo" />
+
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="#717171"
+                                android:padding="4dp"
+                                android:paddingStart="6dp"
+                                android:text="Черничные маффины"
+                                android:textColor="#FFFFFF"
+                                android:textSize="18sp" />
+
+                            <LinearLayout
+                                android:id="@+id/recipe_card_information_layout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:id="@+id/callories_card_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="4dp"
+                                    android:paddingStart="6dp"
+                                    android:text="@string/kkal_card_string"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14sp" />
+
+                                <TextView
+                                    android:id="@+id/time_card_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:padding="4dp"
+                                    android:text="@string/time_card_string"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="14sp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#292929"
+        android:background="#1F2A37"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" >
 
-    <LinearLayout
-        android:id="@+id/main_block"
-        android:layout_width="409dp"
-        android:layout_height="589dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar">
-
-        <TextView
-            android:id="@+id/recipe_of_day_text"
+        <LinearLayout
+            android:id="@+id/bottom_bar_buttons"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:text="@string/recipe_of_day_string"
-            android:textAlignment="textStart"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/recipe_card"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardBackgroundColor="#303D42"
-            app:cardCornerRadius="8dp">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/recipe_card_layout"
-                android:layout_width="match_parent"
+                android:id="@+id/book_of_recipes_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/book_of_recipes_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/book_of_recipes_icon" />
+
+                <TextView
+                    android:id="@+id/book_of_recipes_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="Книга рецептов"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/recipes_button"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/maffin_card_image"
+                    android:id="@+id/recipes_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    app:srcCompat="@drawable/recipes_icon" />
+
+                <TextView
+                    android:id="@+id/recipes_text"
                     android:layout_width="wrap_content"
-                    android:layout_height="200dp"
-                    android:contentDescription="@string/maffins_string"
-                    android:scaleType="fitXY"
-                    app:srcCompat="@drawable/maffin_card_photo" />
-
-                <LinearLayout
-                    android:id="@+id/recipe_card_information_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/callories_card_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="8dp"
-                        android:text="@string/kkal_card_string"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/time_card_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="8dp"
-                        android:text="@string/time_card_string"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
+                    android:layout_height="wrap_content"
+                    android:text="Рецепты"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
