@@ -74,13 +74,13 @@
                     app:cardCornerRadius="8dp">
 
                     <LinearLayout
-                        android:id="@+id/recipe_card_layout"
+                        android:id="@+id/recipe_card_layout1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/maffin_card_image"
+                            android:id="@+id/maffin_card_image1"
                             android:layout_width="wrap_content"
                             android:layout_height="200dp"
                             android:contentDescription="@string/maffins_string"
@@ -88,24 +88,25 @@
                             app:srcCompat="@drawable/maffin_card_photo" />
 
                         <TextView
-                            android:id="@+id/textView"
+                            android:id="@+id/recipe_card_title_text1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="#717171"
                             android:padding="4dp"
                             android:paddingStart="6dp"
-                            android:text="Черничные маффины"
+                            android:text="@string/maffins_card_title_string"
                             android:textColor="#FFFFFF"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            tools:ignore="RtlSymmetry" />
 
                         <LinearLayout
-                            android:id="@+id/recipe_card_information_layout"
+                            android:id="@+id/recipe_card_information_layout1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/callories_card_text"
+                                android:id="@+id/callories_card_text1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -113,10 +114,11 @@
                                 android:paddingStart="6dp"
                                 android:text="@string/kkal_card_string"
                                 android:textColor="#FFFFFF"
-                                android:textSize="14sp" />
+                                android:textSize="14sp"
+                                tools:ignore="RtlSymmetry" />
 
                             <TextView
-                                android:id="@+id/time_card_text"
+                                android:id="@+id/time_card_text1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
@@ -144,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="Новинки"
+                    android:text="@string/new_recipes__string"
                     android:textAlignment="textStart"
                     android:textColor="#FFFFFF"
                     android:textSize="24sp" />
@@ -156,7 +158,7 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/recipe_card_of_day"
+                        android:id="@+id/new_recipe_card1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
@@ -165,13 +167,13 @@
                         app:cardCornerRadius="8dp">
 
                         <LinearLayout
-                            android:id="@+id/recipe_card_layout"
+                            android:id="@+id/recipe_card_layout2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/maffin_card_image"
+                                android:id="@+id/maffin_card_image2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="200dp"
                                 android:contentDescription="@string/maffins_string"
@@ -179,24 +181,25 @@
                                 app:srcCompat="@drawable/maffin_card_photo" />
 
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/recipe_card_title_text2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="#717171"
                                 android:padding="4dp"
                                 android:paddingStart="6dp"
-                                android:text="Черничные маффины"
+                                android:text="@string/maffins_card_title_string"
                                 android:textColor="#FFFFFF"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                tools:ignore="RtlSymmetry" />
 
                             <LinearLayout
-                                android:id="@+id/recipe_card_information_layout"
+                                android:id="@+id/recipe_card_information_layout2"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/callories_card_text"
+                                    android:id="@+id/callories_card_text2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -204,10 +207,11 @@
                                     android:paddingStart="6dp"
                                     android:text="@string/kkal_card_string"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    tools:ignore="RtlSymmetry" />
 
                                 <TextView
-                                    android:id="@+id/time_card_text"
+                                    android:id="@+id/time_card_text2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -223,7 +227,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/recipe_card_of_day"
+                        android:id="@+id/new_recipe_card2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
@@ -232,13 +236,13 @@
                         app:cardCornerRadius="8dp">
 
                         <LinearLayout
-                            android:id="@+id/recipe_card_layout"
+                            android:id="@+id/recipe_card_layout3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/maffin_card_image"
+                                android:id="@+id/maffin_card_image3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="200dp"
                                 android:contentDescription="@string/maffins_string"
@@ -246,24 +250,25 @@
                                 app:srcCompat="@drawable/maffin_card_photo" />
 
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/recipe_card_title_text3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="#717171"
                                 android:padding="4dp"
                                 android:paddingStart="6dp"
-                                android:text="Черничные маффины"
+                                android:text="@string/maffins_card_title_string"
                                 android:textColor="#FFFFFF"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                tools:ignore="RtlSymmetry" />
 
                             <LinearLayout
-                                android:id="@+id/recipe_card_information_layout"
+                                android:id="@+id/recipe_card_information_layout3"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/callories_card_text"
+                                    android:id="@+id/callories_card_text3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -271,10 +276,11 @@
                                     android:paddingStart="6dp"
                                     android:text="@string/kkal_card_string"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    tools:ignore="RtlSymmetry" />
 
                                 <TextView
-                                    android:id="@+id/time_card_text"
+                                    android:id="@+id/time_card_text3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -290,7 +296,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/recipe_card_of_day"
+                        android:id="@+id/new_recipe_card3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="16dp"
@@ -299,13 +305,13 @@
                         app:cardCornerRadius="8dp">
 
                         <LinearLayout
-                            android:id="@+id/recipe_card_layout"
+                            android:id="@+id/recipe_card_layout4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
                             <ImageView
-                                android:id="@+id/maffin_card_image"
+                                android:id="@+id/maffin_card_image4"
                                 android:layout_width="wrap_content"
                                 android:layout_height="200dp"
                                 android:contentDescription="@string/maffins_string"
@@ -313,24 +319,25 @@
                                 app:srcCompat="@drawable/maffin_card_photo" />
 
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/recipe_card_title_text4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:backgroundTint="#717171"
                                 android:padding="4dp"
                                 android:paddingStart="6dp"
-                                android:text="Черничные маффины"
+                                android:text="@string/maffins_card_title_string"
                                 android:textColor="#FFFFFF"
-                                android:textSize="18sp" />
+                                android:textSize="18sp"
+                                tools:ignore="RtlSymmetry" />
 
                             <LinearLayout
-                                android:id="@+id/recipe_card_information_layout"
+                                android:id="@+id/recipe_card_information_layout4"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/callories_card_text"
+                                    android:id="@+id/callories_card_text4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -338,10 +345,11 @@
                                     android:paddingStart="6dp"
                                     android:text="@string/kkal_card_string"
                                     android:textColor="#FFFFFF"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    tools:ignore="RtlSymmetry" />
 
                                 <TextView
-                                    android:id="@+id/time_card_text"
+                                    android:id="@+id/time_card_text4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -375,6 +383,7 @@
             android:id="@+id/bottom_bar_buttons"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -384,12 +393,14 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/book_of_recipes_image"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:contentDescription="@string/recipes_book_string"
                     app:srcCompat="@drawable/book_of_recipes_icon" />
 
                 <TextView
@@ -397,7 +408,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
-                    android:text="Книга рецептов"
+                    android:text="@string/recipes_book_string"
                     android:textColor="#FFFFFF" />
 
             </LinearLayout>
@@ -409,12 +420,14 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/recipes_image"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:contentDescription="@string/recipes_string"
                     app:srcCompat="@drawable/recipes_icon" />
 
                 <TextView
@@ -422,7 +435,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
-                    android:text="Рецепты"
+                    android:text="@string/recipes_string"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -433,12 +446,14 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/profile_image"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:contentDescription="@string/profile_string"
                     app:srcCompat="@drawable/profile_icon" />
 
                 <TextView
@@ -446,7 +461,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
-                    android:text="Профиль"
+                    android:text="@string/profile_string"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -457,12 +472,14 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="8dp">
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
                     android:id="@+id/favourites_image"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
+                    android:contentDescription="@string/favourites_string"
                     app:srcCompat="@drawable/star_icon" />
 
                 <TextView
@@ -470,7 +487,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="4dp"
-                    android:text="Избранное"
+                    android:text="@string/favourites_string"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 

@@ -5,4 +5,10 @@
     <string name="time_card_string">30 мин.</string>
     <string name="kkal_card_string">250 kkal.</string>
     <string name="maffins_string">maffins</string>
+    <string name="maffins_card_title_string">Черничные маффины</string>
+    <string name="recipes_string">Рецепты</string>
+    <string name="profile_string">Профиль</string>
+    <string name="favourites_string">Избранное</string>
+    <string name="recipes_book_string">Книга рецептов</string>
+    <string name="new_recipes__string">Новинки</string>
 </resources>
