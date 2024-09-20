@@ -11,4 +11,10 @@
     <string name="favourites_string">Избранное</string>
     <string name="recipes_book_string">Книга рецептов</string>
     <string name="new_recipes__string">Новинки</string>
+    <string name="next_string">Продолжить</string>
+    <string name="have_account_string">Уже есть аккаунт?</string>
+    <string name="autorization_link_string">Авторизоваться</string>
+    <string name="password_string">Пароль</string>
+    <string name="email_string">Email</string>
+    <string name="registration_title_string">Регистрация</string>
 </resources>
