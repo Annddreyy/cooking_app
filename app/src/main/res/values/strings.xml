@@ -19,4 +19,12 @@
     <string name="registration_title_string">Регистрация</string>
     <string name="autorization_string">Авторизация</string>
     <string name="enter_button">Войти</string>
+    <string name="your_data_string">Ваши данные</string>
+    <string name="surname_string">Фамилия</string>
+    <string name="name_string">Имя</string>
+    <string name="patronymic_string">Отчество (при наличии)</string>
+    <string name="phone_number_string">Номер телефона</string>
+    <string name="user_photo_string">Фото пользователя</string>
+    <string name="choose_photo_string">Выбрать фото</string>
+    <string name="register_string">Зарегестрироваться</string>
 </resources>
