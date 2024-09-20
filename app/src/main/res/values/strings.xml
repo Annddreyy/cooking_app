@@ -17,4 +17,6 @@
     <string name="password_string">Пароль</string>
     <string name="email_string">Email</string>
     <string name="registration_title_string">Регистрация</string>
+    <string name="autorization_string">Авторизация</string>
+    <string name="enter_button">Войти</string>
 </resources>
