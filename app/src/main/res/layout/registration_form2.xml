@@ -76,7 +76,7 @@
                 android:padding="12dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:textSize="18sp" />
+                android:textSize="21sp" />
 
             <EditText
                 android:id="@+id/password_input"
@@ -92,10 +92,10 @@
                 android:padding="12dp"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
-                android:textSize="18sp" />
+                android:textSize="21sp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/registration_button"
+                android:id="@+id/next_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
