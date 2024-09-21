@@ -34,6 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
         android:background="#111927"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,17 +43,19 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/registration_title_text"
+            android:id="@+id/profile_title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="36dp"
-            android:text="@string/your_data_string"
-            android:textAlignment="center"
+            android:layout_marginRight="32dp"
+            android:text="@string/profile_string"
+            android:textAlignment="textStart"
             android:textColor="#FFFFFF"
             android:textSize="36sp" />
 
         <LinearLayout
-            android:id="@+id/registration_form"
+            android:id="@+id/profile_changes_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="36dp"
@@ -74,6 +77,7 @@
                 android:hint="@string/surname_string"
                 android:inputType="text"
                 android:padding="12dp"
+                android:text="@string/surname_user_string"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textSize="18sp" />
@@ -91,6 +95,7 @@
                 android:hint="@string/name_string"
                 android:inputType="text"
                 android:padding="12dp"
+                android:text="@string/name_user_string"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textSize="18sp" />
@@ -108,6 +113,7 @@
                 android:hint="@string/patronymic_string"
                 android:inputType="text"
                 android:padding="12dp"
+                android:text="@string/patronymic_user_string"
                 android:textColor="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textSize="18sp" />
@@ -125,6 +131,8 @@
                 android:inputType="phone"
                 android:minHeight="48dp"
                 android:padding="12dp"
+                android:text="@string/phone_user_string"
+                android:textColor="#FFFFFF"
                 android:textColorHighlight="#FFFFFF"
                 android:textColorHint="#FFFFFF"
                 android:textSize="18sp" />
@@ -144,11 +152,10 @@
                     app:cardCornerRadius="360dp">
 
                     <ImageView
-                        android:id="@+id/profile_image"
+                        android:id="@+id/profile_user_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@drawable/rounded_corner_view_image"
                         android:contentDescription="@string/user_photo_string"
                         android:cropToPadding="false"
                         android:scaleType="fitXY"
@@ -178,7 +185,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/registration_button"
+                android:id="@+id/save_data_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -187,7 +194,7 @@
                 android:paddingTop="8dp"
                 android:paddingRight="16dp"
                 android:paddingBottom="8dp"
-                android:text="@string/register_string"
+                android:text="@string/commit_changes_string"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                 android:textColor="#FDFDFD"
                 android:textSize="18sp" />
@@ -195,5 +202,129 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#1F2A37"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/bottom_bar_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/book_of_recipes_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/book_of_recipes_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/recipes_book_string"
+                    app:srcCompat="@drawable/book_of_recipes_icon" />
+
+                <TextView
+                    android:id="@+id/book_of_recipes_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/recipes_book_string"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/recipes_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/recipes_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/recipes_string"
+                    app:srcCompat="@drawable/recipes_icon" />
+
+                <TextView
+                    android:id="@+id/recipes_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/recipes_string"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/profile_string"
+                    app:srcCompat="@drawable/profile_icon" />
+
+                <TextView
+                    android:id="@+id/profile_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/profile_string"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/favourites_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/favourites_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/favourites_string"
+                    app:srcCompat="@drawable/star_icon" />
+
+                <TextView
+                    android:id="@+id/favourites_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/favourites_string"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
