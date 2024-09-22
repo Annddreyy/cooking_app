@@ -327,6 +327,7 @@
                         android:background="@drawable/rounded_corner_view"
                         android:drawableStart="@drawable/cookie_icon"
                         android:drawablePadding="12dp"
+                        android:drawableTint="#530302"
                         android:ems="10"
                         android:hint="@string/recipe_string"
                         android:inputType="text"
