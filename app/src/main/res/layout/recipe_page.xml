@@ -98,7 +98,7 @@
 
                     <LinearLayout
                         android:id="@+id/callories_information_block"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -123,7 +123,7 @@
 
                     <LinearLayout
                         android:id="@+id/time_information_block"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -148,7 +148,7 @@
 
                     <LinearLayout
                         android:id="@+id/complexity_information_block"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
