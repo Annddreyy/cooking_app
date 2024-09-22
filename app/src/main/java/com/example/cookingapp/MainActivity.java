@@ -13,11 +13,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.new_recipe);
 
-        addSpinner(R.id.callories_spinner, R.array.callories_array);
-        addSpinner(R.id.time_spinner, R.array.times_array);
+        //addSpinner(R.id.callories_spinner, R.array.callories_array);
+        //addSpinner(R.id.time_spinner, R.array.times_array);
     }
 
-    private void addSpinner(int spinnerId, int arrayId) {
+    /*private void addSpinner(int spinnerId, int arrayId) {
         Spinner spinner = findViewById(spinnerId);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -28,5 +28,5 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_layout);
         spinner.setAdapter(adapter);
-    }
+    }*/
 }
