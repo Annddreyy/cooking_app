@@ -11,7 +11,7 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#1F2A37"
+        android:background="#F64203"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
-        android:background="#111927"
+        android:background="#FFF8F8"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
             android:layout_marginTop="36dp"
             android:text="@string/registration_title_string"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
+            android:textColor="#530302"
             android:textSize="36sp" />
 
         <LinearLayout
@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/have_account_string"
-                    android:textColor="#FFFFFF"
+                    android:textColor="#530302"
                     android:textSize="18sp" />
 
                 <TextView
