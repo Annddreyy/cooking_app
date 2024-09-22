@@ -47,13 +47,25 @@
     <string name="instruction_number_string">1</string>
     <string name="instruction_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!</string>
     <string name="add_recipe_string">Добавить рецепт</string>
+    <string name="title_string">Название</string>
+    <string name="small_description_string">Краткое описание</string>
+    <string name="callories_count_input_string">Калорийность</string>
+    <string name="time_of_cooking_string">Время готовки</string>
     <string-array name="callories_array">
-        <item>50 kcal.</item>
-        <item>100 kcal.</item>
-        <item>150 kcal.</item>
-        <item>200 kcal.</item>
-        <item>300 kcal.</item>
-        <item>400 kcal.</item>
-        <item>500 kcal.</item>
+        <item>0-50 kcal.</item>
+        <item>50-100 kcal.</item>
+        <item>100-200 kcal.</item>
+        <item>200-300 kcal.</item>
+        <item>300-500 kcal.</item>
+        <item>500-700 kcal.</item>
+        <item>700+ kcal.</item>
+    </string-array>
+    <string-array name="times_array">
+        <item>1 - 5 мин.</item>
+        <item>5 - 15 мин.</item>
+        <item>15 - 30 мин.</item>
+        <item>30 - 60 мин.</item>
+        <item>60 - 90 мин.</item>
+        <item>90+ мин.</item>
     </string-array>
 </resources>

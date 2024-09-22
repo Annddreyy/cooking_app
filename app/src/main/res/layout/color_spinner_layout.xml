@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:text="Text"
-    android:textSize="20sp"
+    android:textSize="18sp"
     android:textColor="#fff"
     android:background="#F68660">
 
