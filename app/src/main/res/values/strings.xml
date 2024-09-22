@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Cooking App</string>
     <string name="recipe_of_day_string">Рецепт дня</string>
-    <string name="cooking_app_string">Cooking App</string>
+    <string name="cooking_app_string">Ура Кукинг</string>
     <string name="time_card_string">30 мин.</string>
     <string name="kkal_card_string">250 kkal.</string>
     <string name="maffins_string">maffins</string>
