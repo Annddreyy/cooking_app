@@ -47,4 +47,13 @@
     <string name="instruction_number_string">1</string>
     <string name="instruction_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!</string>
     <string name="add_recipe_string">Добавить рецепт</string>
+    <string-array name="callories_array">
+        <item>50 kcal.</item>
+        <item>100 kcal.</item>
+        <item>150 kcal.</item>
+        <item>200 kcal.</item>
+        <item>300 kcal.</item>
+        <item>400 kcal.</item>
+        <item>500 kcal.</item>
+    </string-array>
 </resources>

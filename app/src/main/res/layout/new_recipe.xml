@@ -29,87 +29,209 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <LinearLayout
-        android:id="@+id/main_block"
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
         android:background="#FFF8F8"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/autorization_title_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="@string/autorization_string"
-            android:textAlignment="center"
-            android:textColor="#530302"
-            android:textSize="36sp" />
-
         <LinearLayout
-            android:id="@+id/autorization_form"
+            android:id="@+id/main_block"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="36dp"
-            android:orientation="vertical"
-            android:paddingLeft="32dp"
-            android:paddingTop="16dp"
-            android:paddingRight="32dp">
+            android:layout_margin="32dp"
+            android:background="#FFF8F8"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/email_input"
+            <TextView
+                android:id="@+id/new_recipe_title_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:autofillHints=""
-                android:background="@drawable/rounded_corner_view"
-                android:drawableStart="@drawable/email_input_icon"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="@string/email_string"
-                android:inputType="textEmailAddress"
-                android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="21sp" />
+                android:layout_height="match_parent"
+                android:text="Добавление рецепта"
+                android:textColor="#530302"
+                android:textSize="28sp" />
 
-            <EditText
-                android:id="@+id/password_input"
+            <LinearLayout
+                android:id="@+id/new_recipe_form"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:background="@drawable/rounded_corner_view"
-                android:drawableStart="@drawable/password_input_icon"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="@string/password_string"
-                android:inputType="textPassword"
-                android:padding="12dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="21sp" />
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/autorization_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/rounded_corner_view_button"
-                android:paddingLeft="16dp"
-                android:paddingTop="8dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="8dp"
-                android:text="@string/enter_button"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#FDFDFD"
-                android:textSize="18sp" />
+                <EditText
+                    android:id="@+id/title_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/rounded_corner_view"
+                    android:drawableStart="@drawable/fio_icon"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="Название"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF" />
+
+                <EditText
+                    android:id="@+id/description_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/rounded_corner_view"
+                    android:drawableStart="@drawable/fio_icon"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:hint="Краткое описание"
+                    android:inputType="textMultiLine"
+                    android:padding="12dp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF" />
+
+                <Spinner
+                    android:id="@+id/callories_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_view"
+                    android:dropDownWidth="match_parent"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:popupBackground="@drawable/rounded_corner_view"
+                    android:spinnerMode="dropdown"
+                    android:textColor="#000000" />
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#F64203"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/bottom_bar_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/book_of_recipes_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/book_of_recipes_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/recipes_book_string"
+                    app:srcCompat="@drawable/book_of_recipes_icon" />
+
+                <TextView
+                    android:id="@+id/book_of_recipes_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/recipes_book_string"
+                    android:textColor="#FFFFFF" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/recipes_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/recipes_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/recipes_string"
+                    app:srcCompat="@drawable/recipes_icon" />
+
+                <TextView
+                    android:id="@+id/recipes_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/recipes_string"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/profile_string"
+                    app:srcCompat="@drawable/profile_icon" />
+
+                <TextView
+                    android:id="@+id/profile_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/profile_string"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/favourites_button"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp"
+                tools:ignore="UseCompoundDrawables">
+
+                <ImageView
+                    android:id="@+id/favourites_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="@string/favourites_string"
+                    app:srcCompat="@drawable/star_icon" />
+
+                <TextView
+                    android:id="@+id/favourites_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:text="@string/favourites_string"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
