@@ -40,7 +40,7 @@
     <string name="time_count_string">30 мин.</string>
     <string name="complexity_string">Сложный</string>
     <string name="recipe_description_string">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!</string>
-    <string name="ingredients_string">Инредиенты</string>
+    <string name="ingredients_string">Ингредиенты</string>
     <string name="ingredient_title_string">Готовые пельмени</string>
     <string name="ingredient_count_string">1 пачка</string>
     <string name="instructions_string">Инструкции</string>
@@ -51,6 +51,11 @@
     <string name="small_description_string">Краткое описание</string>
     <string name="callories_count_input_string">Калорийность</string>
     <string name="time_of_cooking_string">Время готовки</string>
+    <string name="title_of_ingredient_string">Название ингредиента</string>
+    <string name="count_string">Количество</string>
+    <string name="enter_instruction_string">Введите инструкцию</string>
+    <string name="photo_string">Фото</string>
+    <string name="upload_image_string">Загрузить изображение</string>
     <string-array name="callories_array">
         <item>0-50 kcal.</item>
         <item>50-100 kcal.</item>

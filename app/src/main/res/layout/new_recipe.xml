@@ -70,6 +70,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
+                    android:autofillHints=""
                     android:background="@drawable/rounded_corner_view"
                     android:drawableStart="@drawable/fio_icon"
                     android:drawablePadding="12dp"
@@ -85,6 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
+                    android:autofillHints=""
                     android:background="@drawable/rounded_corner_view"
                     android:drawableStart="@drawable/fio_icon"
                     android:drawablePadding="12dp"
@@ -170,7 +172,7 @@
                             android:id="@+id/ingredients_input_title_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Ингредиенты"
+                            android:text="@string/ingredients_string"
                             android:textColor="#530302"
                             android:textSize="18sp" />
 
@@ -185,11 +187,12 @@
                                 android:id="@+id/editTextText"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:autofillHints=""
                                 android:background="@drawable/rounded_corner_view"
                                 android:drawableStart="@drawable/fio_icon"
                                 android:drawablePadding="12dp"
                                 android:ems="10"
-                                android:hint="Название ингредиента"
+                                android:hint="@string/title_of_ingredient_string"
                                 android:inputType="text"
                                 android:padding="12dp"
                                 android:textColor="#FFFFFF"
@@ -199,11 +202,12 @@
                                 android:id="@+id/editTextText2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:autofillHints=""
                                 android:background="@drawable/rounded_corner_view"
                                 android:drawableStart="@drawable/fio_icon"
                                 android:drawablePadding="12dp"
                                 android:ems="10"
-                                android:hint="Количество"
+                                android:hint="@string/count_string"
                                 android:inputType="text"
                                 android:padding="12dp"
                                 android:textColor="#FFFFFF"
@@ -216,6 +220,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="true"
+                        android:focusable="true"
+                        android:importantForAccessibility="no"
                         app:backgroundTint="#F68660"
                         app:elevation="2dp"
                         app:fabCustomSize="36dp"
@@ -240,7 +246,7 @@
                             android:id="@+id/instructions_input_title_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Инструкции"
+                            android:text="@string/instructions_string"
                             android:textColor="#530302"
                             android:textSize="18sp" />
 
@@ -249,11 +255,12 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="12dp"
+                            android:autofillHints=""
                             android:background="@drawable/rounded_corner_view"
                             android:drawableStart="@drawable/fio_icon"
                             android:drawablePadding="12dp"
                             android:ems="10"
-                            android:hint="Введите инструкцию"
+                            android:hint="@string/enter_instruction_string"
                             android:inputType="text"
                             android:padding="12dp"
                             android:textColor="#FFFFFF"
@@ -265,10 +272,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="true"
+                        android:focusable="true"
                         app:backgroundTint="#F68660"
                         app:elevation="2dp"
                         app:fabCustomSize="36dp"
-                        app:srcCompat="@drawable/plus_icon" />
+                        app:srcCompat="@drawable/plus_icon"
+                        tools:ignore="ContentDescription" />
 
                 </LinearLayout>
 
@@ -283,7 +292,7 @@
                         android:id="@+id/image_input_title_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Фото"
+                        android:text="@string/photo_string"
                         android:textColor="#530302"
                         android:textSize="18sp" />
 
@@ -299,8 +308,9 @@
                             android:id="@+id/imageView"
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
-                            android:layout_marginRight="12dp"
+                            android:layout_marginEnd="12dp"
                             android:layout_weight="1"
+                            android:importantForAccessibility="no"
                             android:scaleType="fitXY"
                             app:srcCompat="@drawable/maffin_card_photo" />
 
@@ -310,7 +320,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@drawable/rounded_corner_view_button"
-                            android:text="Загрузить изображение"
+                            android:text="@string/upload_image_string"
                             android:textAllCaps="false"
                             android:textColor="#FFFFFF" />
                     </LinearLayout>
@@ -324,7 +334,7 @@
                     android:background="@drawable/rounded_corner_view_button"
                     android:paddingLeft="12dp"
                     android:paddingRight="12dp"
-                    android:text="Добавить рецепт"
+                    android:text="@string/add_recipe_string"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
 
