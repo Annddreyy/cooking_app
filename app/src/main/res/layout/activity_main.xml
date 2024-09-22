@@ -84,7 +84,7 @@
                             android:id="@+id/maffin_card_image"
                             android:layout_width="wrap_content"
                             android:layout_height="200dp"
-                            android:contentDescription="@string/maffins_string"
+                            android:contentDescription="@string/recipe_card_title_string"
                             android:scaleType="fitXY"
                             app:srcCompat="@drawable/maffin_card_photo" />
 
@@ -95,7 +95,7 @@
                             android:backgroundTint="#717171"
                             android:padding="4dp"
                             android:paddingStart="6dp"
-                            android:text="@string/maffins_card_title_string"
+                            android:text="@string/recipe_card_title_string"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp"
                             tools:ignore="RtlSymmetry" />
@@ -177,7 +177,7 @@
                                 android:id="@+id/maffin_card_image1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="200dp"
-                                android:contentDescription="@string/maffins_string"
+                                android:contentDescription="@string/recipe_card_title_string"
                                 android:scaleType="fitXY"
                                 app:srcCompat="@drawable/maffin_card_photo" />
 
@@ -188,7 +188,7 @@
                                 android:backgroundTint="#717171"
                                 android:padding="4dp"
                                 android:paddingStart="6dp"
-                                android:text="@string/maffins_card_title_string"
+                                android:text="@string/recipe_card_title_string"
                                 android:textColor="#FFFFFF"
                                 android:textSize="18sp"
                                 tools:ignore="RtlSymmetry" />
@@ -246,7 +246,7 @@
                                 android:id="@+id/maffin_card_image2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="200dp"
-                                android:contentDescription="@string/maffins_string"
+                                android:contentDescription="@string/recipe_card_title_string"
                                 android:scaleType="fitXY"
                                 app:srcCompat="@drawable/maffin_card_photo" />
 
@@ -257,7 +257,7 @@
                                 android:backgroundTint="#717171"
                                 android:padding="4dp"
                                 android:paddingStart="6dp"
-                                android:text="@string/maffins_card_title_string"
+                                android:text="@string/recipe_card_title_string"
                                 android:textColor="#FFFFFF"
                                 android:textSize="18sp"
                                 tools:ignore="RtlSymmetry" />
@@ -315,7 +315,7 @@
                                 android:id="@+id/maffin_card_image3"
                                 android:layout_width="wrap_content"
                                 android:layout_height="200dp"
-                                android:contentDescription="@string/maffins_string"
+                                android:contentDescription="@string/recipe_card_title_string"
                                 android:scaleType="fitXY"
                                 app:srcCompat="@drawable/maffin_card_photo" />
 
@@ -326,7 +326,7 @@
                                 android:backgroundTint="#717171"
                                 android:padding="4dp"
                                 android:paddingStart="6dp"
-                                android:text="@string/maffins_card_title_string"
+                                android:text="@string/recipe_card_title_string"
                                 android:textColor="#FFFFFF"
                                 android:textSize="18sp"
                                 tools:ignore="RtlSymmetry" />

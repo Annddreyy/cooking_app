@@ -46,4 +46,5 @@
     <string name="instructions_string">Инструкции</string>
     <string name="instruction_number_string">1</string>
     <string name="instruction_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!</string>
+    <string name="add_recipe_string">Добавить рецепт</string>
 </resources>
