@@ -4,8 +4,7 @@
     <string name="cooking_app_string">Ура Кукинг</string>
     <string name="time_card_string">30 мин.</string>
     <string name="kkal_card_string">250 kkal.</string>
-    <string name="maffins_string">maffins</string>
-    <string name="maffins_card_title_string">Черничные маффины</string>
+    <string name="recipe_card_title_string">Черничные маффины</string>
     <string name="recipes_string">Рецепты</string>
     <string name="profile_string">Профиль</string>
     <string name="favourites_string">Избранное</string>
@@ -33,7 +32,18 @@
     <string name="patronymic_user_string">Романовна</string>
     <string name="phone_user_string">+7(999)999-99-99</string>
     <string name="categories_string">Категории</string>
-    <string name="breakfast">Завтрак</string>
+    <string name="category_title_string">Завтрак</string>
     <string name="search_by_title_string">Поиск по названию</string>
     <string name="recipe_string">Рецепт</string>
+    <string name="recipe_title_string">Пельмешки</string>
+    <string name="callories_count_string">250 kkal.</string>
+    <string name="time_count_string">30 мин.</string>
+    <string name="complexity_string">Сложный</string>
+    <string name="recipe_description_string">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!</string>
+    <string name="ingredients_string">Инредиенты</string>
+    <string name="ingredient_title_string">Готовые пельмени</string>
+    <string name="ingredient_count_string">1 пачка</string>
+    <string name="instructions_string">Инструкции</string>
+    <string name="instruction_number_string">1</string>
+    <string name="instruction_text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!</string>
 </resources>

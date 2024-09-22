@@ -53,7 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/pelmeni" />
+                app:srcCompat="@drawable/pelmeni"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:id="@+id/recipe_description_block"
@@ -73,7 +74,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Пельмешки"
+                        android:text="@string/recipe_title_string"
                         android:textColor="#530302"
                         android:textSize="24sp" />
 
@@ -82,7 +83,8 @@
                         android:layout_width="70dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/star_icon_red" />
+                        app:srcCompat="@drawable/star_icon_red"
+                        tools:ignore="ContentDescription" />
 
                 </LinearLayout>
 
@@ -91,6 +93,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="16dp"
+                    android:baselineAligned="false"
                     android:orientation="horizontal">
 
                     <LinearLayout
@@ -99,20 +102,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/callories_icon_image"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            app:srcCompat="@drawable/callories_icon" />
+                            app:srcCompat="@drawable/callories_icon"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/callories_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="250 kkal."
+                            android:text="@string/callories_count_string"
                             android:textColor="#530302" />
                     </LinearLayout>
 
@@ -122,20 +127,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/time_icon_image"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            app:srcCompat="@drawable/time_icon" />
+                            app:srcCompat="@drawable/time_icon"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/time_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="30 мин."
+                            android:text="@string/time_count_string"
                             android:textColor="#530302" />
                     </LinearLayout>
 
@@ -145,20 +152,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/complexity_icon_image"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
-                            app:srcCompat="@drawable/complexity_icon" />
+                            app:srcCompat="@drawable/complexity_icon"
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:id="@+id/complexity_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="Сложный"
+                            android:text="@string/complexity_string"
                             android:textColor="#530302" />
                     </LinearLayout>
 
@@ -176,7 +185,7 @@
                     android:id="@+id/description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!"
+                    android:text="@string/recipe_description_string"
                     android:textAlignment="textStart"
                     android:textColor="#530302"
                     android:textSize="16sp" />
@@ -200,7 +209,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="Инредиенты"
+                        android:text="@string/ingredients_string"
                         android:textAlignment="textStart"
                         android:textColor="#530302"
                         android:textSize="18sp" />
@@ -222,7 +231,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Готовые пельмени"
+                                android:text="@string/ingredient_title_string"
                                 android:textColor="#530302" />
 
                             <TextView
@@ -230,7 +239,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="1 пачка"
+                                android:text="@string/ingredient_count_string"
                                 android:textColor="#530302" />
                         </LinearLayout>
 
@@ -245,7 +254,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Вода"
+                                android:text="@string/ingredient_title_string"
                                 android:textColor="#530302" />
 
                             <TextView
@@ -253,7 +262,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="2 л."
+                                android:text="@string/ingredient_count_string"
                                 android:textColor="#530302" />
                         </LinearLayout>
                     </LinearLayout>
@@ -279,7 +288,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
-                        android:text="Инструкции"
+                        android:text="@string/instructions_string"
                         android:textColor="#530302"
                         android:textSize="18sp" />
 
@@ -308,7 +317,7 @@
                                     android:layout_weight="1"
                                     android:background="#904242"
                                     android:padding="8dp"
-                                    android:text="1"
+                                    android:text="@string/instruction_number_string"
                                     android:textColor="#FFFFFF" />
                             </androidx.cardview.widget.CardView>
 
@@ -318,7 +327,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_weight="2"
-                                android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!"
+                                android:text="@string/instruction_text"
                                 android:textColor="#530302" />
                         </LinearLayout>
 
@@ -351,7 +360,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="16dp"
                                 android:layout_weight="2"
-                                android:text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, ex provident? Beatae sint quaerat nobis iure exercitationem sequi repudiandae dolor esse. Magnam aliquam dignissimos, provident nemo illum tempora ea odit!"
+                                android:text="@string/instruction_text"
                                 android:textColor="#530302" />
                         </LinearLayout>
                     </LinearLayout>
