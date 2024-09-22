@@ -11,7 +11,7 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#1F2A37"
+        android:background="#F64203"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="70dp"
-        android:background="#111927"
+        android:background="#FFF8F8"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
             android:layout_marginRight="32dp"
             android:text="@string/profile_string"
             android:textAlignment="textStart"
-            android:textColor="#FFFFFF"
+            android:textColor="#530302"
             android:textSize="36sp" />
 
         <LinearLayout
@@ -207,7 +207,7 @@
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#1F2A37"
+        android:background="#F64203"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
