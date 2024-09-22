@@ -33,4 +33,7 @@
     <string name="patronymic_user_string">Романовна</string>
     <string name="phone_user_string">+7(999)999-99-99</string>
     <string name="categories_string">Категории</string>
+    <string name="breakfast">Завтрак</string>
+    <string name="search_by_title_string">Поиск по названию</string>
+    <string name="recipe_string">Рецепт</string>
 </resources>
