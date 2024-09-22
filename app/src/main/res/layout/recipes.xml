@@ -11,7 +11,7 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#1F2A37"
+        android:background="#F64203"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="70dp"
-        android:background="#111927"
+        android:background="#FFF8F8"
         android:scrollbarSize="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/categories_string"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#530302"
                         android:textSize="21sp" />
 
                     <HorizontalScrollView
@@ -89,7 +89,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="12dp"
-                                app:cardBackgroundColor="#1F2A37"
+                                app:cardBackgroundColor="#F68660"
                                 app:cardCornerRadius="8dp">
 
                                 <LinearLayout
@@ -114,7 +114,7 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="1"
                                         android:text="@string/breakfast"
-                                        android:textColor="#FFFFFF" />
+                                        android:textColor="#530302" />
                                 </LinearLayout>
 
                             </androidx.cardview.widget.CardView>
@@ -125,7 +125,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="12dp"
-                                app:cardBackgroundColor="#1F2A37"
+                                app:cardBackgroundColor="#F68660"
                                 app:cardCornerRadius="8dp">
 
                                 <LinearLayout
@@ -150,7 +150,7 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="1"
                                         android:text="@string/breakfast"
-                                        android:textColor="#FFFFFF" />
+                                        android:textColor="#530302" />
                                 </LinearLayout>
 
                             </androidx.cardview.widget.CardView>
@@ -161,7 +161,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="12dp"
-                                app:cardBackgroundColor="#1F2A37"
+                                app:cardBackgroundColor="#F68660"
                                 app:cardCornerRadius="8dp">
 
                                 <LinearLayout
@@ -186,7 +186,7 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="1"
                                         android:text="@string/breakfast"
-                                        android:textColor="#FFFFFF" />
+                                        android:textColor="#530302" />
                                 </LinearLayout>
 
                             </androidx.cardview.widget.CardView>
@@ -197,7 +197,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="12dp"
-                                app:cardBackgroundColor="#1F2A37"
+                                app:cardBackgroundColor="#F68660"
                                 app:cardCornerRadius="8dp">
 
                                 <LinearLayout
@@ -222,7 +222,7 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="1"
                                         android:text="@string/breakfast"
-                                        android:textColor="#FFFFFF" />
+                                        android:textColor="#530302" />
                                 </LinearLayout>
 
                             </androidx.cardview.widget.CardView>
@@ -233,7 +233,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="12dp"
-                                app:cardBackgroundColor="#1F2A37"
+                                app:cardBackgroundColor="#F68660"
                                 app:cardCornerRadius="8dp">
 
                                 <LinearLayout
@@ -258,7 +258,7 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="1"
                                         android:text="@string/breakfast"
-                                        android:textColor="#FFFFFF" />
+                                        android:textColor="#530302" />
                                 </LinearLayout>
 
                             </androidx.cardview.widget.CardView>
@@ -269,7 +269,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_gravity="center"
                                 android:layout_marginEnd="12dp"
-                                app:cardBackgroundColor="#1F2A37"
+                                app:cardBackgroundColor="#F68660"
                                 app:cardCornerRadius="8dp">
 
                                 <LinearLayout
@@ -294,7 +294,7 @@
                                         android:layout_height="0dp"
                                         android:layout_weight="1"
                                         android:text="@string/breakfast"
-                                        android:textColor="#FFFFFF" />
+                                        android:textColor="#530302" />
                                 </LinearLayout>
 
                             </androidx.cardview.widget.CardView>
@@ -315,11 +315,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/search_by_title_string"
-                        android:textColor="#FFFFFF"
+                        android:textColor="#530302"
                         android:textSize="21sp" />
 
                     <EditText
-                        android:id="@+id/editTextText"
+                        android:id="@+id/search_recipe_input"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
@@ -331,8 +331,8 @@
                         android:hint="@string/recipe_string"
                         android:inputType="text"
                         android:padding="12dp"
-                        android:textColor="#FFFFFF"
-                        android:textColorHint="#FFFFFF"
+                        android:textColor="#530302"
+                        android:textColorHint="#530302"
                         android:textSize="18sp" />
 
                 </LinearLayout>
@@ -351,7 +351,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="16dp"
                     android:layout_marginTop="120dp"
-                    app:cardBackgroundColor="#303D42"
+                    app:cardBackgroundColor="#F68660"
                     app:cardCornerRadius="8dp">
 
                     <LinearLayout
@@ -420,7 +420,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="16dp"
                     android:layout_marginTop="120dp"
-                    app:cardBackgroundColor="#303D42"
+                    app:cardBackgroundColor="#F68660"
                     app:cardCornerRadius="8dp">
 
                     <LinearLayout
@@ -489,7 +489,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="16dp"
                     android:layout_marginTop="120dp"
-                    app:cardBackgroundColor="#303D42"
+                    app:cardBackgroundColor="#F68660"
                     app:cardCornerRadius="8dp">
 
                     <LinearLayout
@@ -560,10 +560,10 @@
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="#1F2A37"
+        android:background="#F64203"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" >
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:id="@+id/bottom_bar_buttons"
