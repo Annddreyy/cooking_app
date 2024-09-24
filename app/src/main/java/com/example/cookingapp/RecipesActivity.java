@@ -27,5 +27,20 @@ public class RecipesActivity extends AppCompatActivity {
         favouritesButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
             view.getContext().startActivity(intent);});
+
+        LinearLayout recipeCardLayout2Button = findViewById(R.id.recipe_card_layout2);
+        recipeCardLayout2Button.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            view.getContext().startActivity(intent);});
+
+        LinearLayout recipeCardLayout3Button = findViewById(R.id.recipe_card_layout3);
+        recipeCardLayout3Button.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            view.getContext().startActivity(intent);});
+
+        LinearLayout recipeCardLayout4Button = findViewById(R.id.recipe_card_layout4);
+        recipeCardLayout4Button.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            view.getContext().startActivity(intent);});
     }
 }

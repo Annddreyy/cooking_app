@@ -32,5 +32,25 @@ public class MainActivity extends AppCompatActivity {
         favouritesButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
             view.getContext().startActivity(intent);});
+
+        LinearLayout recipeCardLayoutButton = findViewById(R.id.recipe_card_layout);
+        recipeCardLayoutButton.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            view.getContext().startActivity(intent);});
+
+        LinearLayout recipeCardLayout1Button = findViewById(R.id.recipe_card_layout1);
+        recipeCardLayout1Button.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            view.getContext().startActivity(intent);});
+
+        LinearLayout recipeCardLayout2Button = findViewById(R.id.recipe_card_layout2);
+        recipeCardLayout2Button.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            view.getContext().startActivity(intent);});
+
+        LinearLayout recipeCardLayout3Button = findViewById(R.id.recipe_card_layout3);
+        recipeCardLayout3Button.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            view.getContext().startActivity(intent);});
     }
 }

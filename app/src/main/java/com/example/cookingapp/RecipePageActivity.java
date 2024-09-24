@@ -4,14 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-public class FavouritesActivity extends AppCompatActivity {
+public class RecipePageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.favourites_recipes);
+        setContentView(R.layout.recipe_page);
 
         LinearLayout recipesBookButton = findViewById(R.id.book_of_recipes_button);
         recipesBookButton.setOnClickListener(view -> {
@@ -28,19 +32,9 @@ public class FavouritesActivity extends AppCompatActivity {
             Intent intent = new Intent(view.getContext(), ProfileActivity.class);
             view.getContext().startActivity(intent);});
 
-        LinearLayout recipeCardLayout2Button = findViewById(R.id.recipe_card_layout2);
-        recipeCardLayout2Button.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-            view.getContext().startActivity(intent);});
-
-        LinearLayout recipeCardLayout3Button = findViewById(R.id.recipe_card_layout3);
-        recipeCardLayout3Button.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-            view.getContext().startActivity(intent);});
-
-        LinearLayout recipeCardLayout4Button = findViewById(R.id.recipe_card_layout4);
-        recipeCardLayout4Button.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+        LinearLayout favouritesButton = findViewById(R.id.favourites_button);
+        favouritesButton.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
             view.getContext().startActivity(intent);});
     }
 }
