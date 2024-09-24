@@ -6,12 +6,12 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class FavouritesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.favourites_recipes);
 
         LinearLayout recipesBookButton = findViewById(R.id.book_of_recipes_button);
         recipesBookButton.setOnClickListener(view -> {
@@ -26,11 +26,6 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout profileButton = findViewById(R.id.profile_button);
         profileButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), ProfileActivity.class);
-            view.getContext().startActivity(intent);});
-
-        LinearLayout favouritesButton = findViewById(R.id.favourites_button);
-        favouritesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
             view.getContext().startActivity(intent);});
     }
 }
