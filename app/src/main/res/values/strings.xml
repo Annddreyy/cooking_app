@@ -56,6 +56,7 @@
     <string name="enter_instruction_string">Введите инструкцию</string>
     <string name="photo_string">Фото</string>
     <string name="upload_image_string">Загрузить изображение</string>
+    <string name="complexity_of_cooking_string">Сложность готовки</string>
     <string-array name="callories_array">
         <item>0-50 kcal.</item>
         <item>50-100 kcal.</item>
@@ -72,5 +73,10 @@
         <item>30 - 60 мин.</item>
         <item>60 - 90 мин.</item>
         <item>90+ мин.</item>
+    </string-array>
+    <string-array name="complexity_array">
+        <item>Легкий</item>
+        <item>Средний</item>
+        <item>Сложный</item>
     </string-array>
 </resources>

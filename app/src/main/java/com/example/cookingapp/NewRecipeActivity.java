@@ -35,6 +35,7 @@ public class NewRecipeActivity extends AppCompatActivity {
             Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
             view.getContext().startActivity(intent);});
 
+        addSpinner(R.id.complexity_spinner, R.array.times_array);
         addSpinner(R.id.callories_spinner, R.array.callories_array);
         addSpinner(R.id.time_spinner, R.array.times_array);
     }
