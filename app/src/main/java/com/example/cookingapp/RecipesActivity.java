@@ -6,11 +6,14 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import com.bumptech.glide.Glide;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,8 +87,9 @@ public class RecipesActivity extends AppCompatActivity {
                     String title = jsonObject.getString("title");
                     String callories = jsonObject.getString("callories");
                     String cookingTime = jsonObject.getString("cooking_time");
+                    String imagePath = jsonObject.getString("image_path");
 
-                    recipes.addView(createRecipeCard(title, callories, cookingTime));
+                    recipes.addView(createRecipeCard(title, callories, cookingTime, imagePath));
                 }
             } catch (JSONException e) {
                 System.out.println("Error parsing JSON: " + e.getMessage());
@@ -93,7 +97,12 @@ public class RecipesActivity extends AppCompatActivity {
         }
     }
 
-    protected View createRecipeCard(String title, String callories, String time) {
+    protected View createRecipeCard(
+            String title,
+            String callories,
+            String time,
+            String imageLink
+    ) {
         LayoutInflater inflater = LayoutInflater.from(this);
         View card = inflater.inflate(R.layout.recipe_card, null);
 
@@ -105,6 +114,9 @@ public class RecipesActivity extends AppCompatActivity {
 
         TextView timeText = card.findViewById(R.id.time_card_text);
         timeText.setText(time + " мин.");
+
+        ImageView imageView = card.findViewById(R.id.recipe_card_image);
+        Glide.with(this).load(imageLink + "?raw=true").into(imageView);
 
         return card;
     }
