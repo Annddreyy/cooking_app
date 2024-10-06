@@ -84,12 +84,19 @@ public class RecipesActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
+                    int recipe_id  = jsonObject.getInt("id");
                     String title = jsonObject.getString("title");
                     String callories = jsonObject.getString("callories");
                     String cookingTime = jsonObject.getString("cooking_time");
                     String imagePath = jsonObject.getString("image_path");
 
-                    recipes.addView(createRecipeCard(title, callories, cookingTime, imagePath));
+                    recipes.addView(createRecipeCard(
+                            title,
+                            callories,
+                            cookingTime,
+                            imagePath,
+                            recipe_id
+                    ));
                 }
             } catch (JSONException e) {
                 System.out.println("Error parsing JSON: " + e.getMessage());
@@ -101,7 +108,8 @@ public class RecipesActivity extends AppCompatActivity {
             String title,
             String callories,
             String time,
-            String imageLink
+            String imageLink,
+            int recipe_id
     ) {
         LayoutInflater inflater = LayoutInflater.from(this);
         View card = inflater.inflate(R.layout.recipe_card, null);
@@ -117,6 +125,11 @@ public class RecipesActivity extends AppCompatActivity {
 
         ImageView imageView = card.findViewById(R.id.recipe_card_image);
         Glide.with(this).load(imageLink + "?raw=true").into(imageView);
+
+        card.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            intent.putExtra("recipe_id", recipe_id);
+            view.getContext().startActivity(intent);});
 
         return card;
     }

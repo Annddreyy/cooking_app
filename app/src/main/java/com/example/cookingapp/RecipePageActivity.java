@@ -3,6 +3,7 @@ package com.example.cookingapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +13,11 @@ public class RecipePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipe_page);
+
+        int recipe_id = getIntent().getIntExtra("recipe_id", 0);
+
+        TextView title = findViewById(R.id.recipe_title);
+        title.setText(String.valueOf(recipe_id));
 
         LinearLayout recipesBookButton = findViewById(R.id.book_of_recipes_button);
         recipesBookButton.setOnClickListener(view -> {
