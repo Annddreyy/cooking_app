@@ -1,6 +1,5 @@
 package com.example.cookingapp;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 
@@ -24,7 +22,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class RecipesActivity extends AppCompatActivity {
@@ -51,6 +48,7 @@ public class RecipesActivity extends AppCompatActivity {
 
 
         new GetRecipesTask().execute("https://cooking-app-api.vercel.app/api/v1/recipes");
+        new GetRecipeTypesTask().execute("https://cooking-app-api.vercel.app/api/v1/recipe_types");
     }
 
     private class GetRecipesTask extends AsyncTask<String, Void, String> {
@@ -104,6 +102,69 @@ public class RecipesActivity extends AppCompatActivity {
         }
     }
 
+    private class GetRecipeTypesTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                InputStream responseStream = connection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
+
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                return result.toString();
+            } catch (IOException e) {
+                return "Error: " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+                LinearLayout categories = findViewById(R.id.categories);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    int recipe_id  = jsonObject.getInt("id");
+                    String title = jsonObject.getString("title");
+                    String image_path = jsonObject.getString("image_path");
+
+                    categories.addView(createRecipeTypeCard(title, image_path));
+                }
+            } catch (JSONException e) {
+                System.out.println("Error parsing JSON: " + e.getMessage());
+            }
+        }
+    }
+
+    protected View createRecipeTypeCard(
+            String title,
+            String imageLink
+    ) {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View card = inflater.inflate(R.layout.category_card, null);
+
+        TextView cardTitle = card.findViewById(R.id.category_text);
+        cardTitle.setText(title);
+
+        ImageView imageView = card.findViewById(R.id.category_card_image);
+        Glide.with(this).load(imageLink + "?raw=true").into(imageView);
+
+        card.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            view.getContext().startActivity(intent);});
+
+        return card;
+    }
+
     protected View createRecipeCard(
             String title,
             String callories,
@@ -118,10 +179,10 @@ public class RecipesActivity extends AppCompatActivity {
         cardTitle.setText(title);
 
         TextView calloriesText = card.findViewById(R.id.callories_card_text);
-        calloriesText.setText(callories + " калл.");
+        calloriesText.setText(String.format("%s калл.", callories));
 
         TextView timeText = card.findViewById(R.id.time_card_text);
-        timeText.setText(time + " мин.");
+        timeText.setText(String.format("%s мин.", time));
 
         ImageView imageView = card.findViewById(R.id.recipe_card_image);
         Glide.with(this).load(imageLink + "?raw=true").into(imageView);
