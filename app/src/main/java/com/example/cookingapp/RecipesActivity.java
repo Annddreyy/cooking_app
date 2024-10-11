@@ -3,8 +3,10 @@ package com.example.cookingapp;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,6 +51,22 @@ public class RecipesActivity extends AppCompatActivity {
         favouritesButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
             view.getContext().startActivity(intent);});
+
+        EditText findText = findViewById(R.id.search_recipe_input);
+
+        findText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    String searchText = findText.getText().toString();
+
+                    findByTitle(searchText);
+
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
         new GetRecipesTask().execute("https://cooking-app-api-seven.vercel.app/api/v1/recipes");
@@ -173,6 +191,36 @@ public class RecipesActivity extends AppCompatActivity {
                 view.getContext().startActivity(intent);});
 
             categoriesLayout.addView(card);
+        }
+    }
+
+    protected void findByTitle(String text) {
+        LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
+        recipesLayout.removeAllViews();
+        for (Recipe recipe: recipes) {
+            if (recipe.title.contains(text)) {
+                LayoutInflater inflater = LayoutInflater.from(this);
+                View card = inflater.inflate(R.layout.recipe_card, null);
+
+                TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
+                cardTitle.setText(recipe.title);
+
+                TextView calloriesText = card.findViewById(R.id.callories_card_text);
+                calloriesText.setText(String.format("%s калл.", recipe.callories));
+
+                TextView timeText = card.findViewById(R.id.time_card_text);
+                timeText.setText(String.format("%s мин.", recipe.cooking_time));
+
+                ImageView imageView = card.findViewById(R.id.recipe_card_image);
+                Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
+
+                card.setOnClickListener(view -> {
+                    Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+                    intent.putExtra("recipe_id", recipe.recipe_id);
+                    view.getContext().startActivity(intent);});
+
+                recipesLayout.addView(card);
+            }
         }
     }
 
