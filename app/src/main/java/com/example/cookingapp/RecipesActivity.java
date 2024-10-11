@@ -23,8 +23,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class RecipesActivity extends AppCompatActivity {
+
+    ArrayList<Recipe> recipes = new ArrayList<>();
+    ArrayList<RecipeType> recipeTypes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +51,8 @@ public class RecipesActivity extends AppCompatActivity {
             view.getContext().startActivity(intent);});
 
 
-        new GetRecipesTask().execute("https://cooking-app-api.vercel.app/api/v1/recipes");
-        new GetRecipeTypesTask().execute("https://cooking-app-api.vercel.app/api/v1/recipe_types");
+        new GetRecipesTask().execute("https://cooking-app-api-seven.vercel.app/api/v1/recipes");
+        new GetRecipeTypesTask().execute("https://cooking-app-api-seven.vercel.app/api/v1/recipe_types");
     }
 
     private class GetRecipesTask extends AsyncTask<String, Void, String> {
@@ -78,7 +82,7 @@ public class RecipesActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
                 JSONArray jsonArray = new JSONArray(result);
-                LinearLayout recipes = findViewById(R.id.recipes_cards);
+
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -86,19 +90,23 @@ public class RecipesActivity extends AppCompatActivity {
                     String title = jsonObject.getString("title");
                     String callories = jsonObject.getString("callories");
                     String cookingTime = jsonObject.getString("cooking_time");
+                    String complexity = jsonObject.getString("complexity");
+                    String description = jsonObject.getString("description");
                     String imagePath = jsonObject.getString("image_path");
+                    String date = jsonObject.getString("date");
 
-                    recipes.addView(createRecipeCard(
-                            title,
-                            callories,
-                            cookingTime,
-                            imagePath,
-                            recipe_id
-                    ));
+                    Recipe recipe = new Recipe(
+                            recipe_id, title, callories,
+                            cookingTime, complexity, description,
+                            imagePath, date
+                    );
+
+                    recipes.add(recipe);
                 }
-            } catch (JSONException e) {
-                System.out.println("Error parsing JSON: " + e.getMessage());
-            }
+
+                createRecipeCards();
+
+            } catch (JSONException e) {}
         }
     }
 
@@ -129,7 +137,7 @@ public class RecipesActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
                 JSONArray jsonArray = new JSONArray(result);
-                LinearLayout categories = findViewById(R.id.categories);
+
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
 
@@ -137,61 +145,62 @@ public class RecipesActivity extends AppCompatActivity {
                     String title = jsonObject.getString("title");
                     String image_path = jsonObject.getString("image_path");
 
-                    categories.addView(createRecipeTypeCard(title, image_path));
+                    RecipeType recipeType = new RecipeType(recipe_id, title, image_path);
+
+                    recipeTypes.add(recipeType);
                 }
-            } catch (JSONException e) {
-                System.out.println("Error parsing JSON: " + e.getMessage());
-            }
+
+                createRecipeTypeCards();
+            } catch (JSONException e) {}
         }
     }
 
-    protected View createRecipeTypeCard(
-            String title,
-            String imageLink
-    ) {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View card = inflater.inflate(R.layout.category_card, null);
+    protected void createRecipeTypeCards() {
+        LinearLayout categoriesLayout = findViewById(R.id.categories);
+        categoriesLayout.removeAllViews();
+        for (RecipeType recipeType: recipeTypes) {
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View card = inflater.inflate(R.layout.category_card, null);
 
-        TextView cardTitle = card.findViewById(R.id.category_text);
-        cardTitle.setText(title);
+            TextView cardTitle = card.findViewById(R.id.category_text);
+            cardTitle.setText(recipeType.title);
 
-        ImageView imageView = card.findViewById(R.id.category_card_image);
-        Glide.with(this).load(imageLink + "?raw=true").into(imageView);
+            ImageView imageView = card.findViewById(R.id.category_card_image);
+            Glide.with(this).load(recipeType.imagePath + "?raw=true").into(imageView);
 
-        card.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-            view.getContext().startActivity(intent);});
+            card.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+                view.getContext().startActivity(intent);});
 
-        return card;
+            categoriesLayout.addView(card);
+        }
     }
 
-    protected View createRecipeCard(
-            String title,
-            String callories,
-            String time,
-            String imageLink,
-            int recipe_id
-    ) {
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View card = inflater.inflate(R.layout.recipe_card, null);
+    protected void createRecipeCards() {
+        LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
+        recipesLayout.removeAllViews();
+        for (Recipe recipe: recipes) {
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View card = inflater.inflate(R.layout.recipe_card, null);
 
-        TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
-        cardTitle.setText(title);
+            TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
+            cardTitle.setText(recipe.title);
 
-        TextView calloriesText = card.findViewById(R.id.callories_card_text);
-        calloriesText.setText(String.format("%s калл.", callories));
+            TextView calloriesText = card.findViewById(R.id.callories_card_text);
+            calloriesText.setText(String.format("%s калл.", recipe.callories));
 
-        TextView timeText = card.findViewById(R.id.time_card_text);
-        timeText.setText(String.format("%s мин.", time));
+            TextView timeText = card.findViewById(R.id.time_card_text);
+            timeText.setText(String.format("%s мин.", recipe.cooking_time));
 
-        ImageView imageView = card.findViewById(R.id.recipe_card_image);
-        Glide.with(this).load(imageLink + "?raw=true").into(imageView);
+            ImageView imageView = card.findViewById(R.id.recipe_card_image);
+            Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
 
-        card.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-            intent.putExtra("recipe_id", recipe_id);
-            view.getContext().startActivity(intent);});
+            card.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+                intent.putExtra("recipe_id", recipe.recipe_id);
+                view.getContext().startActivity(intent);});
 
-        return card;
+            recipesLayout.addView(card);
+        }
     }
 }
