@@ -16,21 +16,25 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout recipesBookButton = findViewById(R.id.book_of_recipes_button);
         recipesBookButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), RecipesBookActivity.class);
+            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
         LinearLayout recipesButton = findViewById(R.id.recipes_button);
         recipesButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), RecipesActivity.class);
+            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
         LinearLayout profileButton = findViewById(R.id.profile_button);
         profileButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
         LinearLayout favouritesButton = findViewById(R.id.favourites_button);
         favouritesButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
+            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
         LinearLayout recipeCardLayoutButton = findViewById(R.id.recipe_card_layout);

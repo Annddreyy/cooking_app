@@ -46,6 +46,7 @@ public class AutorizationActivity extends AppCompatActivity {
             for (AuthorizationInfo authorizationInfo: authorizationInformation) {
                 if (email.equals(authorizationInfo.email) && passwordSHA256.equals(authorizationInfo.password)) {
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
+                    intent.putExtra("client_id", authorizationInfo.client_id);
                     view.getContext().startActivity(intent);
                     findUser = true;
                     break;
