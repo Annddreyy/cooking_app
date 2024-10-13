@@ -201,7 +201,7 @@ public class RecipesActivity extends AppCompatActivity {
         LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
         recipesLayout.removeAllViews();
         for (Recipe recipe: recipes) {
-            if (recipe.title.contains(text)) {
+            if (recipe.title.toLowerCase().contains(text.toLowerCase())) {
                 LayoutInflater inflater = LayoutInflater.from(this);
                 View card = inflater.inflate(R.layout.recipe_card, null);
 
