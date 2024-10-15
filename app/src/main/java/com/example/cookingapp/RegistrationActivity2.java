@@ -26,11 +26,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegistrationActivity2 extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,13 +84,11 @@ public class RegistrationActivity2 extends AppCompatActivity {
                         jsonObject.put("image_path", encodedImage);
 
 
+
                     } catch (JSONException e) {
                         TextView text = findViewById(R.id.registration_title_text);
                         text.setText(e.getMessage());
                     }
-
-                    Intent intent = new Intent(view.getContext(), MainActivity.class);
-                    view.getContext().startActivity(intent);
 
                     PostJsonRequestTask task = new PostJsonRequestTask(jsonObject);
                     task.execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/client");
@@ -154,7 +152,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
                 }
                 reader.close();
 
-                //return response.toString();
+                return response.toString();
 
             } catch (Exception e) {
                 EditText text = findViewById(R.id.surname_input);
@@ -166,8 +164,22 @@ public class RegistrationActivity2 extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
-            // Handle the response from the server here
-            Log.d(TAG, "POST Response: " + result);
+            JSONObject jsonObject;
+            try {
+                jsonObject = new JSONObject(result);
+
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("client_id", jsonObject.getInt("id"));
+
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                getApplicationContext().startActivity(intent);
+            } catch (JSONException e) {
+                TextView text = findViewById(R.id.registration_title_text);
+                text.setText(e.getMessage());
+            } catch (Exception e) {
+                TextView text = findViewById(R.id.registration_title_text);
+                text.setText(e.getMessage());
+            }
         }
     }
 }

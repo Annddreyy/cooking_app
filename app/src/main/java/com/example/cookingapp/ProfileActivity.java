@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
-        new GetClientTask().execute("https://cooking-app-api-seven.vercel.app/api/v1/client/" + client_id);
+        new GetClientTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/client/" + client_id);
     }
 
     private class GetClientTask extends AsyncTask<String, Void, String> {

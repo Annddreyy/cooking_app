@@ -3,6 +3,7 @@ package com.example.cookingapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         profileButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), ProfileActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
+            view.getContext().startActivity(intent);
+        });
 
         LinearLayout favouritesButton = findViewById(R.id.favourites_button);
         favouritesButton.setOnClickListener(view -> {
