@@ -62,9 +62,9 @@ public class RecipePageActivity extends AppCompatActivity {
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
-        new GetRecipeTask().execute("https://cooking-app-api-seven.vercel.app/api/v1/recipes/" + recipe_id);
-        new GetRecipeIngredientsTask().execute("https://cooking-app-api-seven.vercel.app/api/v1/recipe_ingredients/" + recipe_id);
-        new GetRecipeInstructionsTask().execute("https://cooking-app-api-seven.vercel.app/api/v1/recipe_instructions/" + recipe_id);
+        new GetRecipeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipes/" + recipe_id);
+        new GetRecipeIngredientsTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_ingredients/" + recipe_id);
+        new GetRecipeInstructionsTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_instructions/" + recipe_id);
     }
 
     private class GetRecipeTask extends AsyncTask<String, Void, String> {
