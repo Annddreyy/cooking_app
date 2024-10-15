@@ -29,179 +29,184 @@
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <LinearLayout
-        android:id="@+id/main_block"
+    <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="70dp"
         android:background="#FFF8F8"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/profile_title_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginRight="32dp"
-            android:text="@string/profile_string"
-            android:textAlignment="textStart"
-            android:textColor="#530302"
-            android:textSize="36sp" />
-
         <LinearLayout
-            android:id="@+id/profile_changes_form"
+            android:id="@+id/main_block"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="36dp"
-            android:orientation="vertical"
-            android:paddingLeft="32dp"
-            android:paddingTop="16dp"
-            android:paddingRight="32dp">
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/surname_input"
+            <TextView
+                android:id="@+id/profile_title_text2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:autofillHints=""
-                android:background="@drawable/rounded_corner_view"
-                android:drawableStart="@drawable/fio_icon"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="@string/surname_string"
-                android:inputType="text"
-                android:padding="12dp"
-                android:text="@string/surname_user_string"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/name_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:autofillHints=""
-                android:background="@drawable/rounded_corner_view"
-                android:drawableStart="@drawable/fio_icon"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="@string/name_string"
-                android:inputType="text"
-                android:padding="12dp"
-                android:text="@string/name_user_string"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/patronymic_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="32dp"
-                android:autofillHints=""
-                android:background="@drawable/rounded_corner_view"
-                android:drawableStart="@drawable/fio_icon"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="@string/patronymic_string"
-                android:inputType="text"
-                android:padding="12dp"
-                android:text="@string/patronymic_user_string"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="18sp" />
-
-            <EditText
-                android:id="@+id/phone_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:autofillHints=""
-                android:background="@drawable/rounded_corner_view"
-                android:drawableStart="@drawable/phone_icon"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="@string/phone_number_string"
-                android:inputType="phone"
-                android:minHeight="48dp"
-                android:padding="12dp"
-                android:text="@string/phone_user_string"
-                android:textColor="#FFFFFF"
-                android:textColorHighlight="#FFFFFF"
-                android:textColorHint="#FFFFFF"
-                android:textSize="18sp" />
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="36dp"
+                android:layout_marginRight="32dp"
+                android:text="@string/profile_string"
+                android:textAlignment="textStart"
+                android:textColor="#530302"
+                android:textSize="36sp" />
 
             <LinearLayout
-                android:id="@+id/user_image"
+                android:id="@+id/profile_changes_form"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginTop="36dp"
+                android:orientation="vertical"
+                android:paddingLeft="32dp"
+                android:paddingTop="16dp"
+                android:paddingRight="32dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/profile_image_card"
-                    android:layout_width="30dp"
-                    android:layout_height="110dp"
-                    android:layout_weight="1"
-                    app:cardCornerRadius="360dp">
+                <EditText
+                    android:id="@+id/surname_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:autofillHints=""
+                    android:background="@drawable/rounded_corner_view"
+                    android:drawableStart="@drawable/fio_icon"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="@string/surname_string"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:text="@string/surname_user_string"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="18sp" />
 
-                    <ImageView
-                        android:id="@+id/profile_user_image"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                <EditText
+                    android:id="@+id/name_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:autofillHints=""
+                    android:background="@drawable/rounded_corner_view"
+                    android:drawableStart="@drawable/fio_icon"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="@string/name_string"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:text="@string/name_user_string"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/patronymic_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="32dp"
+                    android:autofillHints=""
+                    android:background="@drawable/rounded_corner_view"
+                    android:drawableStart="@drawable/fio_icon"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="@string/patronymic_string"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:text="@string/patronymic_user_string"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/phone_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:background="@drawable/rounded_corner_view"
+                    android:drawableStart="@drawable/phone_icon"
+                    android:drawablePadding="12dp"
+                    android:ems="10"
+                    android:hint="@string/phone_number_string"
+                    android:inputType="phone"
+                    android:minHeight="48dp"
+                    android:padding="12dp"
+                    android:text="@string/phone_user_string"
+                    android:textColor="#FFFFFF"
+                    android:textColorHighlight="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/user_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/profile_image_card"
+                        android:layout_width="30dp"
+                        android:layout_height="110dp"
                         android:layout_weight="1"
-                        android:contentDescription="@string/user_photo_string"
-                        android:cropToPadding="false"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/maffin_card_photo"
-                        app:srcCompat="@drawable/pelmeni"
-                        tools:ignore="ImageContrastCheck" />
-                </androidx.cardview.widget.CardView>
+                        app:cardCornerRadius="360dp">
+
+                        <ImageView
+                            android:id="@+id/profile_user_image"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/user_photo_string"
+                            android:cropToPadding="false"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/maffin_card_photo"
+                            app:srcCompat="@drawable/pelmeni"
+                            tools:ignore="ImageContrastCheck" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/choose_image_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_corner_view_button"
+                        android:paddingLeft="16dp"
+                        android:paddingTop="8dp"
+                        android:paddingRight="16dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/choose_photo_string"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="#FDFDFD"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/choose_image_button"
+                    android:id="@+id/save_data_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="32dp"
-                    android:layout_marginBottom="32dp"
-                    android:layout_weight="1"
                     android:background="@drawable/rounded_corner_view_button"
                     android:paddingLeft="16dp"
                     android:paddingTop="8dp"
                     android:paddingRight="16dp"
                     android:paddingBottom="8dp"
-                    android:text="@string/choose_photo_string"
+                    android:text="@string/commit_changes_string"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#FDFDFD"
                     android:textSize="18sp" />
 
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/save_data_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/rounded_corner_view_button"
-                android:paddingLeft="16dp"
-                android:paddingTop="8dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="8dp"
-                android:text="@string/commit_changes_string"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#FDFDFD"
-                android:textSize="18sp" />
-
         </LinearLayout>
-
-    </LinearLayout>
+    </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_bar"
