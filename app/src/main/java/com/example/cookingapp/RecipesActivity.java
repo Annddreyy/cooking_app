@@ -176,24 +176,43 @@ public class RecipesActivity extends AppCompatActivity {
         }
     }
 
-    protected void createRecipeTypeCards() {
-        LinearLayout categoriesLayout = findViewById(R.id.categories);
-        categoriesLayout.removeAllViews();
-        for (RecipeType recipeType: recipeTypes) {
-            LayoutInflater inflater = LayoutInflater.from(this);
-            View card = inflater.inflate(R.layout.category_card, null);
+    private class GetRecipesWithRecipeTypeTask extends AsyncTask<String, Void, String> {
 
-            TextView cardTitle = card.findViewById(R.id.category_text);
-            cardTitle.setText(recipeType.title);
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
 
-            ImageView imageView = card.findViewById(R.id.category_card_image);
-            Glide.with(this).load(recipeType.imagePath + "?raw=true").into(imageView);
+                InputStream responseStream = connection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
 
-            card.setOnClickListener(view -> {
-                Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-                view.getContext().startActivity(intent);});
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                return result.toString();
+            } catch (IOException e) {
+                return "Error: " + e.getMessage();
+            }
+        }
 
-            categoriesLayout.addView(card);
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+
+                ArrayList<Integer> recipes = new ArrayList<>();
+                JSONArray recipesArray = jsonObject.getJSONArray("recipes");
+                for (int i = 0; i < recipesArray.length(); i++) {
+                    recipes.add(recipesArray.getInt(i));
+                }
+
+                createRecipeCardsWithType(recipes);
+
+            } catch (JSONException e) {}
         }
     }
 
@@ -252,6 +271,58 @@ public class RecipesActivity extends AppCompatActivity {
                 view.getContext().startActivity(intent);});
 
             recipesLayout.addView(card);
+        }
+    }
+
+    protected void createRecipeCardsWithType(ArrayList<Integer> recipesIds) {
+        LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
+        recipesLayout.removeAllViews();
+        for (Recipe recipe: recipes) {
+            if (recipesIds.contains(recipe.recipe_id)) {
+                LayoutInflater inflater = LayoutInflater.from(this);
+                View card = inflater.inflate(R.layout.recipe_card, null);
+
+                TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
+                cardTitle.setText(recipe.title);
+
+                TextView calloriesText = card.findViewById(R.id.callories_card_text);
+                calloriesText.setText(String.format("%s калл.", recipe.callories));
+
+                TextView timeText = card.findViewById(R.id.time_card_text);
+                timeText.setText(String.format("%s мин.", recipe.cooking_time));
+
+                ImageView imageView = card.findViewById(R.id.recipe_card_image);
+                Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
+
+                card.setOnClickListener(view -> {
+                    Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+                    intent.putExtra("recipe_id", recipe.recipe_id);
+                    view.getContext().startActivity(intent);
+                });
+
+                recipesLayout.addView(card);
+            }
+        }
+    }
+
+    protected void createRecipeTypeCards() {
+        LinearLayout categoriesLayout = findViewById(R.id.categories);
+        categoriesLayout.removeAllViews();
+        for (RecipeType recipeType: recipeTypes) {
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View card = inflater.inflate(R.layout.category_card, null);
+
+            TextView cardTitle = card.findViewById(R.id.category_text);
+            cardTitle.setText(recipeType.title);
+
+            ImageView imageView = card.findViewById(R.id.category_card_image);
+            Glide.with(this).load(recipeType.imagePath + "?raw=true").into(imageView);
+
+            card.setOnClickListener(view -> {
+                new GetRecipesWithRecipeTypeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_with_recipe_type/" + recipeType.recipe_type_id);
+            });
+
+            categoriesLayout.addView(card);
         }
     }
 }
