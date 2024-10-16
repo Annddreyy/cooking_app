@@ -238,6 +238,7 @@ public class RecipesActivity extends AppCompatActivity {
 
                 card.setOnClickListener(view -> {
                     Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+                    intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
                     intent.putExtra("recipe_id", recipe.recipe_id);
                     view.getContext().startActivity(intent);});
 
@@ -267,6 +268,7 @@ public class RecipesActivity extends AppCompatActivity {
 
             card.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
                 intent.putExtra("recipe_id", recipe.recipe_id);
                 view.getContext().startActivity(intent);});
 
@@ -296,6 +298,7 @@ public class RecipesActivity extends AppCompatActivity {
 
                 card.setOnClickListener(view -> {
                     Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+                    intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
                     intent.putExtra("recipe_id", recipe.recipe_id);
                     view.getContext().startActivity(intent);
                 });
