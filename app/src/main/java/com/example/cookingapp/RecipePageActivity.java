@@ -3,8 +3,10 @@ package com.example.cookingapp;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -71,10 +74,36 @@ public class RecipePageActivity extends AppCompatActivity {
         ImageView favourityStar = findViewById(R.id.favourity_image);
         favourityStar.setOnClickListener(view -> {
             isFavourityRecipe = !isFavourityRecipe;
-            if (isFavourityRecipe)
+            if (isFavourityRecipe) {
                 favourityStar.setImageResource(R.drawable.star_icon_red_fill);
-            else
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("client_id", getIntent().getIntExtra("client_id", 0));
+                    jsonObject.put("recipe_id", getIntent().getIntExtra("recipe_id", 0));
+
+                } catch (JSONException e) {
+                    TextView text = findViewById(R.id.registration_title_text);
+                    text.setText(e.getMessage());
+                }
+
+                PostFavourityRecipeTask task = new PostFavourityRecipeTask(jsonObject);
+                task.execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourite_recipes");
+            }
+            else {
                 favourityStar.setImageResource(R.drawable.star_icon_red);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("client_id", getIntent().getIntExtra("client_id", 0));
+                    jsonObject.put("recipe_id", getIntent().getIntExtra("recipe_id", 0));
+
+                } catch (JSONException e) {
+                    TextView text = findViewById(R.id.registration_title_text);
+                    text.setText(e.getMessage());
+                }
+
+                DeleteFavourityRecipeTask task = new DeleteFavourityRecipeTask(jsonObject);
+                task.execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourity_recipes");
+            }
         });
 
         new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourite_recipes/" + getIntent().getIntExtra("client_id", 0));
@@ -268,6 +297,125 @@ public class RecipePageActivity extends AppCompatActivity {
                     favourityStar.setImageResource(R.drawable.star_icon_red);
 
             } catch (JSONException e) {}
+        }
+    }
+
+    public class PostFavourityRecipeTask extends AsyncTask<String, Void, String> {
+
+        private static final String TAG = "PostJsonRequestTask";
+
+        private JSONObject jsonBody; // JSON object to send as the request body
+
+        public PostFavourityRecipeTask(JSONObject jsonBody) {
+            this.jsonBody = jsonBody;
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("POST");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+                connection.setRequestProperty("Content-Type", "application/json");
+
+                // Send the JSON request body
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(jsonBody.toString());
+                writer.flush();
+                writer.close();
+
+                // Read the response
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                return response.toString();
+
+            } catch (Exception e) {
+                EditText text = findViewById(R.id.surname_input);
+                text.setText(e.getMessage());
+                Log.d(TAG, "POST Response: " + e.getMessage());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jsonObject;
+            try {
+                jsonObject = new JSONObject(result);
+
+            } catch (JSONException e) {
+                TextView text = findViewById(R.id.registration_title_text);
+                text.setText(e.getMessage());
+            } catch (Exception e) {
+                TextView text = findViewById(R.id.registration_title_text);
+                text.setText(e.getMessage());
+            }
+        }
+    }
+
+    public class DeleteFavourityRecipeTask extends AsyncTask<String, Void, String> {
+
+        private JSONObject jsonBody; // JSON object to send as the request body
+
+        public DeleteFavourityRecipeTask(JSONObject jsonBody) {
+            this.jsonBody = jsonBody;
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("DELETE");
+                connection.setDoOutput(true);
+                connection.setDoInput(true);
+                connection.setRequestProperty("Content-Type", "application/json");
+
+                // Send the JSON request body
+                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+                writer.write(jsonBody.toString());
+                writer.flush();
+                writer.close();
+
+                // Read the response
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                return response.toString();
+
+            } catch (Exception e) {
+                EditText text = findViewById(R.id.surname_input);
+                text.setText(e.getMessage());
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            JSONObject jsonObject;
+            try {
+                jsonObject = new JSONObject(result);
+
+            } catch (JSONException e) {
+                TextView text = findViewById(R.id.registration_title_text);
+                text.setText(e.getMessage());
+            } catch (Exception e) {
+                TextView text = findViewById(R.id.registration_title_text);
+                text.setText(e.getMessage());
+            }
         }
     }
 
