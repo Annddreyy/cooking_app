@@ -28,6 +28,8 @@ import java.util.ArrayList;
 public class RecipePageActivity extends AppCompatActivity {
     ArrayList<Ingredient> ingredients = new ArrayList<>();
     ArrayList<Instruction> instructions = new ArrayList<>();
+
+    boolean isFavourityRecipe = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,26 +44,40 @@ public class RecipePageActivity extends AppCompatActivity {
         recipesBookButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), RecipesBookActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
+            view.getContext().startActivity(intent);
+        });
 
         LinearLayout recipesButton = findViewById(R.id.recipes_button);
         recipesButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), RecipesActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
+            view.getContext().startActivity(intent);
+        });
 
         LinearLayout profileButton = findViewById(R.id.profile_button);
         profileButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), ProfileActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
+            view.getContext().startActivity(intent);
+        });
 
         LinearLayout favouritesButton = findViewById(R.id.favourites_button);
         favouritesButton.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
+            view.getContext().startActivity(intent);
+        });
 
+        ImageView favourityStar = findViewById(R.id.favourity_image);
+        favourityStar.setOnClickListener(view -> {
+            isFavourityRecipe = !isFavourityRecipe;
+            if (isFavourityRecipe)
+                favourityStar.setImageResource(R.drawable.star_icon_red_fill);
+            else
+                favourityStar.setImageResource(R.drawable.star_icon_red);
+        });
+
+        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourite_recipes/" + getIntent().getIntExtra("client_id", 0));
         new GetRecipeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipes/" + recipe_id);
         new GetRecipeIngredientsTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_ingredients/" + recipe_id);
         new GetRecipeInstructionsTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_instructions/" + recipe_id);
@@ -206,6 +222,55 @@ public class RecipePageActivity extends AppCompatActivity {
         }
     }
 
+    private class GetRecipesTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                InputStream responseStream = connection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
+
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                return result.toString();
+            } catch (IOException e) {
+                return "Error: " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    int recipe_id  = jsonObject.getInt("id");
+
+                    if (recipe_id == getIntent().getIntExtra("recipe_id", 0)) {
+                        isFavourityRecipe = true;
+                        break;
+                    }
+                }
+
+                ImageView favourityStar = findViewById(R.id.favourity_image);
+
+                if (isFavourityRecipe)
+                    favourityStar.setImageResource(R.drawable.star_icon_red_fill);
+                else
+                    favourityStar.setImageResource(R.drawable.star_icon_red);
+
+            } catch (JSONException e) {}
+        }
+    }
+
     private void createIngredientsTable() {
         try {
             LinearLayout ingredientsTable = findViewById(R.id.ingredients_table);
@@ -233,7 +298,6 @@ public class RecipePageActivity extends AppCompatActivity {
             for (int i = 0; i < instructions.size(); i++) {
                 LayoutInflater inflater = LayoutInflater.from(this);
                 View instruction_table_row = inflater.inflate(R.layout.instruction_row, null);
-                TextView text = findViewById(R.id.time_text);
 
                 TextView instructionNumber = instruction_table_row.findViewById(R.id.instruction_number_text);
                 instructionNumber.setText(String.valueOf(i + 1));
