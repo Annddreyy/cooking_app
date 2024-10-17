@@ -53,7 +53,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="fitXY"
-                app:srcCompat="@drawable/pelmeni"
                 tools:ignore="ContentDescription" />
 
             <LinearLayout
@@ -74,7 +73,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/recipe_title_string"
                         android:textColor="#530302"
                         android:textSize="24sp" />
 
@@ -117,7 +115,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@string/callories_count_string"
                             android:textColor="#530302" />
                     </LinearLayout>
 
@@ -142,7 +139,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@string/time_count_string"
                             android:textColor="#530302" />
                     </LinearLayout>
 
@@ -167,7 +163,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="@string/complexity_string"
                             android:textColor="#530302" />
                     </LinearLayout>
 
@@ -185,7 +180,6 @@
                     android:id="@+id/description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/recipe_description_string"
                     android:textAlignment="textStart"
                     android:textColor="#530302"
                     android:textSize="16sp" />
@@ -218,11 +212,7 @@
                         android:id="@+id/ingredients_table"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <include layout="@layout/ingredient_row" />
-
-                    </LinearLayout>
+                        android:orientation="vertical"/>
 
                 </LinearLayout>
 
@@ -253,11 +243,7 @@
                         android:id="@+id/instruction_table"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <include layout="@layout/instruction_row" />
-
-                    </LinearLayout>
+                        android:orientation="vertical"/>
                 </LinearLayout>
 
             </LinearLayout>
