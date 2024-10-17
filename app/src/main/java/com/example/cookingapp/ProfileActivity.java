@@ -1,8 +1,12 @@
 package com.example.cookingapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -49,6 +53,12 @@ public class ProfileActivity extends AppCompatActivity {
             Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
+
+        Button changeImage = findViewById(R.id.choose_image_button);
+        changeImage.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, 1);
+        });
 
         new GetClientTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/client/" + client_id);
     }
@@ -103,6 +113,22 @@ public class ProfileActivity extends AppCompatActivity {
                 Glide.with(getApplicationContext()).load(image_path + "?raw=true").into(image);
 
             } catch (JSONException e) {}
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        ImageView photoImage = findViewById(R.id.profile_user_image);
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                photoImage.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
