@@ -88,16 +88,16 @@ public class ProfileActivity extends AppCompatActivity {
                 String image_path = jsonObject.getString("image_path");
 
                 EditText surnameInput = findViewById(R.id.surname_input);
-                surnameInput.setText(surname);
+                surnameInput.setHint(surname);
 
                 EditText nameInput = findViewById(R.id.name_input);
-                nameInput.setText(name);
+                nameInput.setHint(name);
 
                 EditText patronymicInput = findViewById(R.id.patronymic_input);
-                patronymicInput.setText(patronymic);
+                patronymicInput.setHint(patronymic);
 
                 EditText phoneInput = findViewById(R.id.phone_input);
-                phoneInput.setText(phone);
+                phoneInput.setHint(phone);
 
                 ImageView image = findViewById(R.id.profile_user_image);
                 Glide.with(getApplicationContext()).load(image_path + "?raw=true").into(image);
