@@ -69,6 +69,13 @@
                 android:paddingTop="16dp"
                 android:paddingRight="32dp">
 
+                <TextView
+                    android:id="@+id/error_text3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#E23C3C"
+                    android:textSize="18sp" />
+
                 <EditText
                     android:id="@+id/surname_input"
                     android:layout_width="match_parent"
