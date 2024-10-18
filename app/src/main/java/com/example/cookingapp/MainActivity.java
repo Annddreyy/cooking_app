@@ -23,9 +23,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    ArrayList<Recipe> recipes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +72,92 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
             view.getContext().startActivity(intent);});
 
+        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/new_recipes");
         new GetMostPopularRecipeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/most_popular_recipe");
+    }
+
+    private class GetRecipesTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                InputStream responseStream = connection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
+
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                return result.toString();
+            } catch (IOException e) {
+                return "Error: " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONArray jsonArray = new JSONArray(result);
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    int recipe_id  = jsonObject.getInt("id");
+                    String title = jsonObject.getString("title");
+                    String callories = jsonObject.getString("callories");
+                    String cookingTime = jsonObject.getString("cooking_time");
+                    String complexity = jsonObject.getString("complexity");
+                    String description = jsonObject.getString("description");
+                    String imagePath = jsonObject.getString("image_path");
+                    String date = jsonObject.getString("date");
+
+                    Recipe recipe = new Recipe(
+                            recipe_id, title, callories,
+                            cookingTime, complexity, description,
+                            imagePath, date
+                    );
+
+                    recipes.add(recipe);
+                }
+
+                createRecipeCards();
+
+            } catch (JSONException e) {}
+        }
+    }
+
+    protected void createRecipeCards() {
+        LinearLayout recipesLayout = findViewById(R.id.new_recipes_cards);
+        recipesLayout.removeAllViews();
+        for (Recipe recipe: recipes) {
+            LayoutInflater inflater = LayoutInflater.from(this);
+            View card = inflater.inflate(R.layout.recipe_card, null);
+
+            TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
+            cardTitle.setText(recipe.title);
+
+            TextView calloriesText = card.findViewById(R.id.callories_card_text);
+            calloriesText.setText(String.format("%s калл.", recipe.callories));
+
+            TextView timeText = card.findViewById(R.id.time_card_text);
+            timeText.setText(String.format("%s мин.", recipe.cooking_time));
+
+            ImageView imageView = card.findViewById(R.id.recipe_card_image);
+            Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
+
+            card.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
+                intent.putExtra("recipe_id", recipe.recipe_id);
+                view.getContext().startActivity(intent);});
+
+            recipesLayout.addView(card);
+        }
     }
 
     private class GetMostPopularRecipeTask extends AsyncTask<String, Void, String> {
