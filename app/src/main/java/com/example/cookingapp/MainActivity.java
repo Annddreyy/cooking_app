@@ -1,11 +1,28 @@
 package com.example.cookingapp;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,11 +56,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
-        LinearLayout recipeCardLayoutButton = findViewById(R.id.recipe_card_layout);
-        recipeCardLayoutButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-            view.getContext().startActivity(intent);});
-
         LinearLayout recipeCardLayout1Button = findViewById(R.id.recipe_card_layout1);
         recipeCardLayout1Button.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
@@ -58,5 +70,81 @@ public class MainActivity extends AppCompatActivity {
         recipeCardLayout3Button.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
             view.getContext().startActivity(intent);});
+
+        new GetMostPopularRecipeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/most_popular_recipe");
+    }
+
+    private class GetMostPopularRecipeTask extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                URL url = new URL(urls[0]);
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+
+                InputStream responseStream = connection.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
+
+                StringBuilder result = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    result.append(line);
+                }
+                return result.toString();
+            } catch (IOException e) {
+                return "Error: " + e.getMessage();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            try {
+                JSONObject jsonObject = new JSONObject(result);
+
+                int recipe_id  = jsonObject.getInt("id");
+                String title = jsonObject.getString("title");
+                String callories = jsonObject.getString("callories");
+                String cookingTime = jsonObject.getString("cooking_time");
+                String imagePath = jsonObject.getString("image_path");
+
+                createMostPopularRecipeCard(recipe_id, title, callories, cookingTime, imagePath);
+
+            } catch (JSONException e) {}
+        }
+    }
+
+    protected void createMostPopularRecipeCard(
+            int recipe_id,
+            String title,
+            String callories,
+            String cooking_time,
+            String image_path
+    ) {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View card = inflater.inflate(R.layout.recipe_card, null);
+
+        TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
+        cardTitle.setText(title);
+
+        TextView calloriesText = card.findViewById(R.id.callories_card_text);
+        calloriesText.setText(String.format("%s калл.", callories));
+
+        TextView timeText = card.findViewById(R.id.time_card_text);
+        timeText.setText(String.format("%s мин.", cooking_time));
+
+        ImageView imageView = card.findViewById(R.id.recipe_card_image);
+        Glide.with(this).load(image_path + "?raw=true").into(imageView);
+
+        card.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
+            intent.putExtra("recipe_id", recipe_id);
+            view.getContext().startActivity(intent);});
+
+        LinearLayout recipeOfDayLayout = findViewById(R.id.recipe_of_day_card_layout);
+        recipeOfDayLayout.removeAllViews();
+        recipeOfDayLayout.addView(card);
+
     }
 }
