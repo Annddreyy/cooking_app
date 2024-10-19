@@ -57,21 +57,6 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
-        LinearLayout recipeCardLayout1Button = findViewById(R.id.recipe_card_layout1);
-        recipeCardLayout1Button.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-            view.getContext().startActivity(intent);});
-
-        LinearLayout recipeCardLayout2Button = findViewById(R.id.recipe_card_layout2);
-        recipeCardLayout2Button.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-            view.getContext().startActivity(intent);});
-
-        LinearLayout recipeCardLayout3Button = findViewById(R.id.recipe_card_layout3);
-        recipeCardLayout3Button.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-            view.getContext().startActivity(intent);});
-
         new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/new_recipes");
         new GetMostPopularRecipeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/most_popular_recipe");
     }
