@@ -81,14 +81,14 @@ public class RecipePageActivity extends AppCompatActivity {
                 }
 
                 DeleteFavourityRecipeTask task = new DeleteFavourityRecipeTask(jsonObject);
-                task.execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourity_recipes");
+                task.execute(HTTPHelper.baseUrl + "/favourity_recipes");
             }
         });
 
-        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourite_recipes/" + getIntent().getIntExtra("client_id", 0));
-        new GetRecipeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipes/" + recipe_id);
-        new GetRecipeIngredientsTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_ingredients/" + recipe_id);
-        new GetRecipeInstructionsTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_instructions/" + recipe_id);
+        new GetRecipesTask().execute(HTTPHelper.baseUrl + "/favourite_recipes/" + getIntent().getIntExtra("client_id", 0));
+        new GetRecipeTask().execute(HTTPHelper.baseUrl + "/recipes/" + recipe_id);
+        new GetRecipeIngredientsTask().execute(HTTPHelper.baseUrl + "/recipe_ingredients/" + recipe_id);
+        new GetRecipeInstructionsTask().execute(HTTPHelper.baseUrl + "/recipe_instructions/" + recipe_id);
     }
 
     private class GetRecipeTask extends AsyncTask<String, Void, String> {
@@ -216,10 +216,7 @@ public class RecipePageActivity extends AppCompatActivity {
     }
 
     public class PostFavourityRecipeTask extends AsyncTask<String, Void, String> {
-
-        private static final String TAG = "PostJsonRequestTask";
-
-        private JSONObject jsonBody; // JSON object to send as the request body
+        private JSONObject jsonBody;
 
         public PostFavourityRecipeTask(JSONObject jsonBody) {
             this.jsonBody = jsonBody;
@@ -227,58 +224,12 @@ public class RecipePageActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setDoOutput(true);
-                connection.setDoInput(true);
-                connection.setRequestProperty("Content-Type", "application/json");
-
-                // Send the JSON request body
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(jsonBody.toString());
-                writer.flush();
-                writer.close();
-
-                // Read the response
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-                reader.close();
-
-                return response.toString();
-
-            } catch (Exception e) {
-                EditText text = findViewById(R.id.surname_input);
-                text.setText(e.getMessage());
-                Log.d(TAG, "POST Response: " + e.getMessage());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            JSONObject jsonObject;
-            try {
-                jsonObject = new JSONObject(result);
-
-            } catch (JSONException e) {
-                TextView text = findViewById(R.id.registration_title_text);
-                text.setText(e.getMessage());
-            } catch (Exception e) {
-                TextView text = findViewById(R.id.registration_title_text);
-                text.setText(e.getMessage());
-            }
+            return HTTPHelper.createConnectionData(urls[0], jsonBody, "POST");
         }
     }
 
     public class DeleteFavourityRecipeTask extends AsyncTask<String, Void, String> {
-
-        private JSONObject jsonBody; // JSON object to send as the request body
+        private JSONObject jsonBody;
 
         public DeleteFavourityRecipeTask(JSONObject jsonBody) {
             this.jsonBody = jsonBody;
@@ -286,51 +237,7 @@ public class RecipePageActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("DELETE");
-                connection.setDoOutput(true);
-                connection.setDoInput(true);
-                connection.setRequestProperty("Content-Type", "application/json");
-
-                // Send the JSON request body
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(jsonBody.toString());
-                writer.flush();
-                writer.close();
-
-                // Read the response
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-                reader.close();
-
-                return response.toString();
-
-            } catch (Exception e) {
-                EditText text = findViewById(R.id.surname_input);
-                text.setText(e.getMessage());
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            JSONObject jsonObject;
-            try {
-                jsonObject = new JSONObject(result);
-
-            } catch (JSONException e) {
-                TextView text = findViewById(R.id.registration_title_text);
-                text.setText(e.getMessage());
-            } catch (Exception e) {
-                TextView text = findViewById(R.id.registration_title_text);
-                text.setText(e.getMessage());
-            }
+            return HTTPHelper.createConnectionData(urls[0], jsonBody, "DELETE");
         }
     }
 

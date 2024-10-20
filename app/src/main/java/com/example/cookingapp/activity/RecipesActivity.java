@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.cookingapp.R;
 import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
+import com.example.cookingapp.auxiliary_algorithms.HTTPObjects;
 import com.example.cookingapp.model.Recipe;
 import com.example.cookingapp.model.RecipeType;
 
@@ -74,23 +75,7 @@ public class RecipesActivity extends AppCompatActivity {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    int recipe_id  = jsonObject.getInt("id");
-                    String title = jsonObject.getString("title");
-                    String callories = jsonObject.getString("callories");
-                    String cookingTime = jsonObject.getString("cooking_time");
-                    String complexity = jsonObject.getString("complexity");
-                    String description = jsonObject.getString("description");
-                    String imagePath = jsonObject.getString("image_path");
-                    String date = jsonObject.getString("date");
-
-                    Recipe recipe = new Recipe(
-                            recipe_id, title, callories,
-                            cookingTime, complexity, description,
-                            imagePath, date
-                    );
-
-                    recipes.add(recipe);
+                    recipes.add(HTTPObjects.createRecipe(jsonObject));
                 }
 
                 createRecipeCards();

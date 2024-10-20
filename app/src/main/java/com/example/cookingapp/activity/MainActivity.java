@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.cookingapp.R;
 import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
+import com.example.cookingapp.auxiliary_algorithms.HTTPObjects;
 import com.example.cookingapp.model.Recipe;
 
 import org.json.JSONArray;
@@ -52,57 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    int recipe_id  = jsonObject.getInt("id");
-                    String title = jsonObject.getString("title");
-                    String callories = jsonObject.getString("callories");
-                    String cookingTime = jsonObject.getString("cooking_time");
-                    String complexity = jsonObject.getString("complexity");
-                    String description = jsonObject.getString("description");
-                    String imagePath = jsonObject.getString("image_path");
-                    String date = jsonObject.getString("date");
-
-                    Recipe recipe = new Recipe(
-                            recipe_id, title, callories,
-                            cookingTime, complexity, description,
-                            imagePath, date
-                    );
-
-                    recipes.add(recipe);
+                    recipes.add(HTTPObjects.createRecipe(jsonObject));
                 }
 
                 createRecipeCards();
 
             } catch (JSONException e) {}
-        }
-    }
-
-    protected void createRecipeCards() {
-        LinearLayout recipesLayout = findViewById(R.id.new_recipes_cards);
-        recipesLayout.removeAllViews();
-        for (Recipe recipe: recipes) {
-            LayoutInflater inflater = LayoutInflater.from(this);
-            View card = inflater.inflate(R.layout.recipe_card, null);
-
-            TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
-            cardTitle.setText(recipe.title);
-
-            TextView calloriesText = card.findViewById(R.id.callories_card_text);
-            calloriesText.setText(String.format("%s калл.", recipe.callories));
-
-            TextView timeText = card.findViewById(R.id.time_card_text);
-            timeText.setText(String.format("%s мин.", recipe.cooking_time));
-
-            ImageView imageView = card.findViewById(R.id.recipe_card_image);
-            Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
-
-            card.setOnClickListener(view -> {
-                Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-                intent.putExtra("recipe_id", recipe.recipe_id);
-                view.getContext().startActivity(intent);});
-
-            recipesLayout.addView(card);
         }
     }
 
@@ -117,51 +73,43 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             try {
                 JSONObject jsonObject = new JSONObject(result);
-
-                int recipe_id  = jsonObject.getInt("id");
-                String title = jsonObject.getString("title");
-                String callories = jsonObject.getString("callories");
-                String cookingTime = jsonObject.getString("cooking_time");
-                String imagePath = jsonObject.getString("image_path");
-
-                createMostPopularRecipeCard(recipe_id, title, callories, cookingTime, imagePath);
-
+                LinearLayout recipesLayout = findViewById(R.id.recipe_of_day_card_layout);
+                createRecipeCard(recipesLayout, HTTPObjects.createRecipe(jsonObject));
             } catch (JSONException e) {}
         }
     }
 
-    protected void createMostPopularRecipeCard(
-            int recipe_id,
-            String title,
-            String callories,
-            String cooking_time,
-            String image_path
-    ) {
+    protected void createRecipeCards() {
+        LinearLayout recipesLayout = findViewById(R.id.new_recipes_cards);
+        recipesLayout.removeAllViews();
+        for (Recipe recipe: recipes) {
+            createRecipeCard(recipesLayout, recipe);
+        }
+    }
+
+    protected void createRecipeCard(LinearLayout recipesLayout, Recipe recipe){
         LayoutInflater inflater = LayoutInflater.from(this);
         View card = inflater.inflate(R.layout.recipe_card, null);
 
         TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
-        cardTitle.setText(title);
+        cardTitle.setText(recipe.title);
 
         TextView calloriesText = card.findViewById(R.id.callories_card_text);
-        calloriesText.setText(String.format("%s калл.", callories));
+        calloriesText.setText(String.format("%s калл.", recipe.callories));
 
         TextView timeText = card.findViewById(R.id.time_card_text);
-        timeText.setText(String.format("%s мин.", cooking_time));
+        timeText.setText(String.format("%s мин.", recipe.cooking_time));
 
         ImageView imageView = card.findViewById(R.id.recipe_card_image);
-        Glide.with(this).load(image_path + "?raw=true").into(imageView);
+        Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
 
         card.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            intent.putExtra("recipe_id", recipe_id);
+            intent.putExtra("recipe_id", recipe.recipe_id);
             view.getContext().startActivity(intent);});
 
-        LinearLayout recipeOfDayLayout = findViewById(R.id.recipe_of_day_card_layout);
-        recipeOfDayLayout.removeAllViews();
-        recipeOfDayLayout.addView(card);
-
+        recipesLayout.addView(card);
     }
 
     private void setupClickListener(int viewId, Class<?> targetActivity) {

@@ -31,7 +31,7 @@ public class HTTPHelper {
             return "Error: " + e.getMessage();
         }
     }
-    public static String createConnectionAndPostOrPatchData(String connectionUrl, JSONObject jsonBody, String requestType) {
+    public static String createConnectionData(String connectionUrl, JSONObject jsonBody, String requestType) {
         try {
             URL url = new URL(connectionUrl);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();

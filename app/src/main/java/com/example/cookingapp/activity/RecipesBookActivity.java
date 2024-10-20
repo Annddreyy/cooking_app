@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.cookingapp.R;
 import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
+import com.example.cookingapp.auxiliary_algorithms.HTTPObjects;
 import com.example.cookingapp.model.Recipe;
 import com.example.cookingapp.model.RecipeType;
 
@@ -55,8 +56,8 @@ public class RecipesBookActivity extends AppCompatActivity {
             }
         });
 
-        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/user_recipes/" + + getIntent().getIntExtra("client_id", 0));
-        new GetRecipeTypesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_types");
+        new GetRecipesTask().execute(HTTPHelper.baseUrl + "/user_recipes/" + + getIntent().getIntExtra("client_id", 0));
+        new GetRecipeTypesTask().execute(HTTPHelper.baseUrl + "/recipe_types");
     }
 
     private class GetRecipeTypesTask extends AsyncTask<String, Void, String> {
@@ -102,23 +103,7 @@ public class RecipesBookActivity extends AppCompatActivity {
 
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    int recipe_id  = jsonObject.getInt("id");
-                    String title = jsonObject.getString("title");
-                    String callories = jsonObject.getString("callories");
-                    String cookingTime = jsonObject.getString("cooking_time");
-                    String complexity = jsonObject.getString("complexity");
-                    String description = jsonObject.getString("description");
-                    String imagePath = jsonObject.getString("image_path");
-                    String date = jsonObject.getString("date");
-
-                    Recipe recipe = new Recipe(
-                            recipe_id, title, callories,
-                            cookingTime, complexity, description,
-                            imagePath, date
-                    );
-
-                    recipes.add(recipe);
+                    recipes.add(HTTPObjects.createRecipe(jsonObject));
                 }
 
                 createRecipeCards();

@@ -1,5 +1,6 @@
 package com.example.cookingapp.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -35,6 +36,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProfileActivity extends AppCompatActivity {
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,13 +96,13 @@ public class ProfileActivity extends AppCompatActivity {
             }
             else {
                 TextView text = findViewById(R.id.error_text3);
-                text.setText("Телефон введен в неверном формате");
+                text.setText("Телефон введен в неверном формате! +7(999)999-99-99");
             }
         });
 
 
 
-        new GetClientTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/client/" + client_id);
+        new GetClientTask().execute(HTTPHelper.baseUrl + "/client/" + client_id);
     }
 
     private class GetClientTask extends AsyncTask<String, Void, String> {
@@ -165,7 +167,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            return HTTPHelper.createConnectionAndPostOrPatchData(urls[0], jsonBody, "PATCH");
+            return HTTPHelper.createConnectionData(urls[0], jsonBody, "PATCH");
         }
     }
 

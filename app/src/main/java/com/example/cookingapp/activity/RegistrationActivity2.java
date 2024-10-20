@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cookingapp.R;
 import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
+import com.example.cookingapp.auxiliary_algorithms.HTTPObjects;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -122,7 +123,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            return HTTPHelper.createConnectionAndPostOrPatchData(urls[0], jsonBody, "POST");
+            return HTTPHelper.createConnectionData(urls[0], jsonBody, "POST");
         }
 
         @Override
