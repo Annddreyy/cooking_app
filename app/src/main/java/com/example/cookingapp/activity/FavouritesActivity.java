@@ -23,12 +23,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 
 public class FavouritesActivity extends AppCompatActivity {
@@ -120,23 +114,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-
-                InputStream responseStream = connection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
-
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-                return result.toString();
-            } catch (IOException e) {
-                return "Error: " + e.getMessage();
-            }
+            return HTTPHelper.createConnectionAndReadData(urls[0]);
         }
 
         @Override
@@ -165,23 +143,7 @@ public class FavouritesActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-
-                InputStream responseStream = connection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
-
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-                return result.toString();
-            } catch (IOException e) {
-                return "Error: " + e.getMessage();
-            }
+            return HTTPHelper.createConnectionAndReadData(urls[0]);
         }
 
         @Override
