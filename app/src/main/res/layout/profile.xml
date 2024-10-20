@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/top_bar"
@@ -166,8 +166,8 @@
                             android:contentDescription="@string/user_photo_string"
                             android:cropToPadding="false"
                             android:scaleType="fitXY"
-                            android:src="@drawable/maffin_card_photo"
-                            app:srcCompat="@drawable/pelmeni"
+                            android:src="@drawable/profile_anonymous"
+                            app:srcCompat="@drawable/profile_anonymous"
                             tools:ignore="ImageContrastCheck" />
                     </androidx.cardview.widget.CardView>
 
@@ -195,6 +195,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
+                    android:layout_marginBottom="16dp"
                     android:background="@drawable/rounded_corner_view_button"
                     android:paddingLeft="16dp"
                     android:paddingTop="8dp"

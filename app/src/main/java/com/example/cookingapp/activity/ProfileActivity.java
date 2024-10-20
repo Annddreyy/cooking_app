@@ -1,4 +1,4 @@
-package com.example.cookingapp;
+package com.example.cookingapp.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -18,8 +18,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.cookingapp.R;
+import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -123,23 +124,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-
-                InputStream responseStream = connection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
-
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-                return result.toString();
-            } catch (IOException e) {
-                return "Error: " + e.getMessage();
-            }
+            return HTTPHelper.createConnectionAndReadData(urls[0]);
         }
 
         @Override

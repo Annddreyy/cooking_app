@@ -1,4 +1,4 @@
-package com.example.cookingapp;
+package com.example.cookingapp.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cookingapp.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,7 +28,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

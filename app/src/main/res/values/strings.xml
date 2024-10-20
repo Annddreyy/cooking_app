@@ -57,6 +57,8 @@
     <string name="photo_string">Фото</string>
     <string name="upload_image_string">Загрузить изображение</string>
     <string name="complexity_of_cooking_string">Сложность готовки</string>
+    <string name="registration_link_on_authorization_screen">Зарегестрироваться</string>
+    <string name="have_not_account_string">Нет аккаунта?</string>
     <string-array name="callories_array">
         <item>0-50 kcal.</item>
         <item>50-100 kcal.</item>

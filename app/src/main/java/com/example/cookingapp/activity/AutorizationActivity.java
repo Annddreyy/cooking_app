@@ -1,4 +1,4 @@
-package com.example.cookingapp;
+package com.example.cookingapp.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -8,6 +8,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cookingapp.R;
+import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
+import com.example.cookingapp.auxiliary_algorithms.SHA256;
+import com.example.cookingapp.model.AuthorizationInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,6 +39,13 @@ public class AutorizationActivity extends AppCompatActivity {
 
         EditText emailInput = findViewById(R.id.email_input);
         EditText passwordInput = findViewById(R.id.password_input);
+
+        TextView registrationLink = findViewById(R.id.registration_link);
+        registrationLink.setOnClickListener(view -> {
+                    Intent intent = new Intent(view.getContext(), RegistrationActivity1.class);
+                    view.getContext().startActivity(intent);
+                });
+
 
         Button autorizationButton = findViewById(R.id.autorization_button);
         autorizationButton.setOnClickListener(view -> {
@@ -64,23 +76,7 @@ public class AutorizationActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-
-                InputStream responseStream = connection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
-
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-                return result.toString();
-            } catch (IOException e) {
-                return "Error: " + e.getMessage();
-            }
+            return HTTPHelper.createConnectionAndReadData(urls[0]);
         }
 
         @Override

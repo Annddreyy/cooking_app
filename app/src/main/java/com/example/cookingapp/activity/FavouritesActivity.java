@@ -1,4 +1,4 @@
-package com.example.cookingapp;
+package com.example.cookingapp.activity;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,6 +14,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.example.cookingapp.R;
+import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
+import com.example.cookingapp.model.Recipe;
+import com.example.cookingapp.model.RecipeType;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,15 +31,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class RecipesActivity extends AppCompatActivity {
-
+public class FavouritesActivity extends AppCompatActivity {
     ArrayList<Recipe> recipes = new ArrayList<>();
     ArrayList<RecipeType> recipeTypes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.recipes);
+        setContentView(R.layout.favourites_recipes);
 
         LinearLayout recipesBookButton = findViewById(R.id.book_of_recipes_button);
         recipesBookButton.setOnClickListener(view -> {
@@ -43,15 +46,15 @@ public class RecipesActivity extends AppCompatActivity {
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
-        LinearLayout profileButton = findViewById(R.id.profile_button);
-        profileButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), ProfileActivity.class);
+        LinearLayout recipesButton = findViewById(R.id.recipes_button);
+        recipesButton.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipesActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
-        LinearLayout favouritesButton = findViewById(R.id.favourites_button);
-        favouritesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
+        LinearLayout profileButton = findViewById(R.id.profile_button);
+        profileButton.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), ProfileActivity.class);
             intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
             view.getContext().startActivity(intent);});
 
@@ -71,32 +74,14 @@ public class RecipesActivity extends AppCompatActivity {
             }
         });
 
-
-        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipes");
+        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourite_recipes/" + getIntent().getIntExtra("client_id", 0));
         new GetRecipeTypesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_types");
     }
-
     private class GetRecipesTask extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("GET");
-
-                InputStream responseStream = connection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(responseStream));
-
-                StringBuilder result = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result.append(line);
-                }
-                return result.toString();
-            } catch (IOException e) {
-                return "Error: " + e.getMessage();
-            }
+            return HTTPHelper.createConnectionAndReadData(urls[0]);
         }
 
         @Override

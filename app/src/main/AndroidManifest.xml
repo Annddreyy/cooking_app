@@ -15,31 +15,31 @@
         android:theme="@style/Theme.CookingApp"
         tools:targetApi="31">
         <activity
-            android:name=".RecipePageActivity"
+            android:name=".activity.RecipePageActivity"
             android:exported="false" />
         <activity
-            android:name=".NewRecipeActivity"
+            android:name=".activity.NewRecipeActivity"
             android:exported="false" />
         <activity
-            android:name=".FavouritesActivity"
+            android:name=".activity.FavouritesActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activity.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".RecipesActivity"
+            android:name=".activity.RecipesActivity"
             android:exported="false" />
         <activity
-            android:name=".RecipesBookActivity"
+            android:name=".activity.RecipesBookActivity"
             android:exported="false" />
         <activity
-            android:name=".AutorizationActivity"
+            android:name=".activity.AutorizationActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistrationActivity2"
+            android:name=".activity.RegistrationActivity2"
             android:exported="false" />
         <activity
-            android:name=".RegistrationActivity1"
+            android:name=".activity.RegistrationActivity1"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,7 +48,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true" />
     </application>
 

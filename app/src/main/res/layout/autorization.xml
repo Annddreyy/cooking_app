@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/top_bar"
@@ -101,20 +101,56 @@
                 android:textColorHint="#FFFFFF"
                 android:textSize="21sp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/autorization_button"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/authorization_form_bottom_part"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:background="@drawable/rounded_corner_view_button"
-                android:paddingLeft="16dp"
-                android:paddingTop="8dp"
-                android:paddingRight="16dp"
-                android:paddingBottom="8dp"
-                android:text="@string/enter_button"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#FDFDFD"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/autorization_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_corner_view_button"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingRight="16dp"
+                    android:paddingBottom="8dp"
+                    android:text="@string/enter_button"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="#FDFDFD"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/registration_link_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/info_registration_link_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/have_not_account_string"
+                        android:textAlignment="textEnd"
+                        android:textColor="#530302"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/registration_link"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/registration_link_on_authorization_screen"
+                        android:textAlignment="textEnd"
+                        android:textColor="#0589D6"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

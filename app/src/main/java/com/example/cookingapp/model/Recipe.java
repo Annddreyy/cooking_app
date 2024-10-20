@@ -1,16 +1,16 @@
-package com.example.cookingapp;
+package com.example.cookingapp.model;
 
 public class Recipe {
-    int recipe_id;
-    String title;
-    String callories;
-    String cooking_time;
-    String complexity;
-    String description;
-    String image_path;
-    String date;
+    public int recipe_id;
+    public String title;
+    public String callories;
+    public String cooking_time;
+    public String complexity;
+    public String description;
+    public String image_path;
+    public String date;
 
-    Recipe(int recipe_id, String title, String callories,
+    public Recipe(int recipe_id, String title, String callories,
            String cooking_time, String complexity, String description,
            String image_path, String date) {
         this.recipe_id = recipe_id;

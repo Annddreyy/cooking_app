@@ -1,4 +1,4 @@
-package com.example.cookingapp;
+package com.example.cookingapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cookingapp.R;
 
 public class NewRecipeActivity extends AppCompatActivity {
 
