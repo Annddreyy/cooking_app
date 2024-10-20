@@ -62,4 +62,33 @@ public class HTTPHelper {
         } catch (Exception e) {}
         return null;
     }
+    public static String createConnectionAndPatchData(String connectionUrl, JSONObject jsonBody) {
+        try {
+            URL url = new URL(connectionUrl);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("PATCH");
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            connection.setRequestProperty("Content-Type", "application/json");
+
+            // Send the JSON request body
+            OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+            writer.write(jsonBody.toString());
+            writer.flush();
+            writer.close();
+
+            // Read the response
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            return response.toString();
+
+        } catch (Exception e) {}
+        return null;
+    }
 }
