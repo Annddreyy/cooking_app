@@ -131,7 +131,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            return HTTPHelper.createConnectionAndPostData(urls[0], jsonBody);
+            return HTTPHelper.createConnectionAndPostOrPatchData(urls[0], jsonBody, "POST");
         }
 
         @Override

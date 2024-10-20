@@ -171,10 +171,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public class PatchJsonRequestTask extends AsyncTask<String, Void, String> {
-
-        private static final String TAG = "PostJsonRequestTask";
-
-        private JSONObject jsonBody; // JSON object to send as the request body
+        private JSONObject jsonBody;
 
         public PatchJsonRequestTask(JSONObject jsonBody) {
             this.jsonBody = jsonBody;
@@ -182,21 +179,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            return HTTPHelper.createConnectionAndPatchData(urls[0], jsonBody);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            JSONObject jsonObject;
-            try {
-                jsonObject = new JSONObject(result);
-            } catch (JSONException e) {
-                TextView text = findViewById(R.id.registration_title_text);
-                text.setText(e.getMessage());
-            } catch (Exception e) {
-                TextView text = findViewById(R.id.registration_title_text);
-                text.setText(e.getMessage());
-            }
+            return HTTPHelper.createConnectionAndPostOrPatchData(urls[0], jsonBody, "PATCH");
         }
     }
 }
