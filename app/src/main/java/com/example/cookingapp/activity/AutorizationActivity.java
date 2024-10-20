@@ -1,7 +1,6 @@
 package com.example.cookingapp.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,19 +9,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cookingapp.R;
+import com.example.cookingapp.auxiliary_algorithms.GetAuthorizationTask;
 import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
 import com.example.cookingapp.auxiliary_algorithms.SHA256;
 import com.example.cookingapp.model.AuthorizationInfo;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
 public class AutorizationActivity extends AppCompatActivity {
-    ArrayList<AuthorizationInfo> authorizationInformation = new ArrayList<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +41,7 @@ public class AutorizationActivity extends AppCompatActivity {
 
             boolean findUser = false;
 
-            for (AuthorizationInfo authorizationInfo: authorizationInformation) {
+            for (AuthorizationInfo authorizationInfo: GetAuthorizationTask.authorizationInformation) {
                 if (email.equals(authorizationInfo.email) && passwordSHA256.equals(authorizationInfo.password)) {
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     intent.putExtra("client_id", authorizationInfo.client_id);
@@ -64,32 +56,5 @@ public class AutorizationActivity extends AppCompatActivity {
         });
 
         new GetAuthorizationTask().execute(HTTPHelper.baseUrl + "/authorization");
-    }
-
-    private class GetAuthorizationTask extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... urls) {
-            return HTTPHelper.createConnectionAndReadData(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            try {
-                JSONArray jsonArray = new JSONArray(result);
-
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                    int client_id = jsonObject.getInt("id");
-                    String email = jsonObject.getString("email");
-                    String password = jsonObject.getString("password");
-
-                    AuthorizationInfo authorizationInfo = new AuthorizationInfo(client_id, email, password);
-
-                    authorizationInformation.add(authorizationInfo);
-                }
-            } catch (JSONException e) {}
-        }
     }
 }

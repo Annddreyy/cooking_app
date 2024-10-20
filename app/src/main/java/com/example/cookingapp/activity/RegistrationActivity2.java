@@ -1,5 +1,6 @@
 package com.example.cookingapp.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -33,6 +34,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegistrationActivity2 extends AppCompatActivity {
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,19 +86,13 @@ public class RegistrationActivity2 extends AppCompatActivity {
                         String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
 
                         jsonObject.put("image_path", encodedImage);
-
-
-
-                    } catch (JSONException e) {
-                        TextView text = findViewById(R.id.registration_title_text);
-                        text.setText(e.getMessage());
-                    }
+                    } catch (Exception e) {}
 
                     PostJsonRequestTask task = new PostJsonRequestTask(jsonObject);
-                    task.execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/client");
+                    task.execute(HTTPHelper.baseUrl + "/client");
                 }
                 else
-                    errorText.setText("Номер телефона введен в неверном формате!");
+                    errorText.setText("Номер телефона введен в неверном формате! (+7(999)999-99-99)");
             }
             else
                 errorText.setText("Заполните все поля!");
@@ -113,9 +109,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 photoImage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            } catch (Exception e) {}
         }
     }
 
@@ -142,13 +136,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
 
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 getApplicationContext().startActivity(intent);
-            } catch (JSONException e) {
-                TextView text = findViewById(R.id.registration_title_text);
-                text.setText(e.getMessage());
-            } catch (Exception e) {
-                TextView text = findViewById(R.id.registration_title_text);
-                text.setText(e.getMessage());
-            }
+            } catch (Exception e) {}
         }
     }
 }
