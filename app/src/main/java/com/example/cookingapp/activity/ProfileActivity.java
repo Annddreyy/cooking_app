@@ -42,23 +42,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         String client_id = String.valueOf(getIntent().getIntExtra("client_id", 0));
 
-        LinearLayout recipesBookButton = findViewById(R.id.book_of_recipes_button);
-        recipesBookButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipesBookActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
-
-        LinearLayout recipesButton = findViewById(R.id.recipes_button);
-        recipesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipesActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
-
-        LinearLayout favouritesButton = findViewById(R.id.favourites_button);
-        favouritesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
+        setupClickListener(R.id.book_of_recipes_button, RecipesBookActivity.class);
+        setupClickListener(R.id.recipes_button, RecipesActivity.class);
+        setupClickListener(R.id.favourites_button, FavouritesActivity.class);
 
         Button changeImage = findViewById(R.id.choose_image_button);
         changeImage.setOnClickListener(view -> {
@@ -180,6 +166,17 @@ public class ProfileActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... urls) {
             return HTTPHelper.createConnectionAndPostOrPatchData(urls[0], jsonBody, "PATCH");
+        }
+    }
+
+    private void setupClickListener(int viewId, Class<?> targetActivity) {
+        LinearLayout button = findViewById(viewId);
+        if (button != null) {
+            button.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), targetActivity);
+                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
+                startActivity(intent);
+            });
         }
     }
 }

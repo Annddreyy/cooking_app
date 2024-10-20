@@ -36,9 +36,9 @@ public class AutorizationActivity extends AppCompatActivity {
 
         TextView registrationLink = findViewById(R.id.registration_link);
         registrationLink.setOnClickListener(view -> {
-                    Intent intent = new Intent(view.getContext(), RegistrationActivity1.class);
-                    view.getContext().startActivity(intent);
-                });
+            Intent intent = new Intent(view.getContext(), RegistrationActivity1.class);
+            view.getContext().startActivity(intent);
+        });
 
 
         Button autorizationButton = findViewById(R.id.autorization_button);

@@ -34,23 +34,9 @@ public class FavouritesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.favourites_recipes);
 
-        LinearLayout recipesBookButton = findViewById(R.id.book_of_recipes_button);
-        recipesBookButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipesBookActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
-
-        LinearLayout recipesButton = findViewById(R.id.recipes_button);
-        recipesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipesActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
-
-        LinearLayout profileButton = findViewById(R.id.profile_button);
-        profileButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), ProfileActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
+        setupClickListener(R.id.book_of_recipes_button, RecipesBookActivity.class);
+        setupClickListener(R.id.recipes_button, RecipesActivity.class);
+        setupClickListener(R.id.profile_button, ProfileActivity.class);
 
         EditText findText = findViewById(R.id.search_recipe_input);
 
@@ -273,6 +259,17 @@ public class FavouritesActivity extends AppCompatActivity {
             });
 
             categoriesLayout.addView(card);
+        }
+    }
+
+    private void setupClickListener(int viewId, Class<?> targetActivity) {
+        LinearLayout button = findViewById(viewId);
+        if (button != null) {
+            button.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), targetActivity);
+                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
+                startActivity(intent);
+            });
         }
     }
 }

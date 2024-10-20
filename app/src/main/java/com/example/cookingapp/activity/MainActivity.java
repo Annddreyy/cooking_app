@@ -29,30 +29,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout recipesBookButton = findViewById(R.id.book_of_recipes_button);
-        recipesBookButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipesBookActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
-
-        LinearLayout recipesButton = findViewById(R.id.recipes_button);
-        recipesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), RecipesActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
-
-        LinearLayout profileButton = findViewById(R.id.profile_button);
-        profileButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), ProfileActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);
-        });
-
-        LinearLayout favouritesButton = findViewById(R.id.favourites_button);
-        favouritesButton.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), FavouritesActivity.class);
-            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-            view.getContext().startActivity(intent);});
+        setupClickListener(R.id.book_of_recipes_button, RecipesBookActivity.class);
+        setupClickListener(R.id.recipes_button, RecipesActivity.class);
+        setupClickListener(R.id.profile_button, ProfileActivity.class);
+        setupClickListener(R.id.favourites_button, FavouritesActivity.class);
 
         new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/new_recipes");
         new GetMostPopularRecipeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/most_popular_recipe");
@@ -182,5 +162,16 @@ public class MainActivity extends AppCompatActivity {
         recipeOfDayLayout.removeAllViews();
         recipeOfDayLayout.addView(card);
 
+    }
+
+    private void setupClickListener(int viewId, Class<?> targetActivity) {
+        LinearLayout button = findViewById(viewId);
+        if (button != null) {
+            button.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), targetActivity);
+                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
+                startActivity(intent);
+            });
+        }
     }
 }
