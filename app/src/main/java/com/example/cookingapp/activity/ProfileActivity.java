@@ -93,9 +93,6 @@ public class ProfileActivity extends AppCompatActivity {
                 text.setText("Телефон введен в неверном формате! +7(999)999-99-99");
             }
         });
-
-
-
         new GetClientTask().execute(HTTPHelper.baseUrl + "/client/" + client_id);
     }
 
