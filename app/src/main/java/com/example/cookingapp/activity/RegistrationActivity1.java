@@ -37,7 +37,7 @@ public class RegistrationActivity1 extends AppCompatActivity {
 
         Button registrationButton = findViewById(R.id.registration_button);
 
-        new GetAuthorizationTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/authorization");
+        new GetAuthorizationTask().execute(HTTPHelper.baseUrl + "/authorization");
 
         registrationButton.setOnClickListener(view -> {
             TextView errorText = findViewById(R.id.error_text);

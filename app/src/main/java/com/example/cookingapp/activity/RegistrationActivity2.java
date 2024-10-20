@@ -120,9 +120,6 @@ public class RegistrationActivity2 extends AppCompatActivity {
     }
 
     public class PostJsonRequestTask extends AsyncTask<String, Void, String> {
-
-        private static final String TAG = "PostJsonRequestTask";
-
         private JSONObject jsonBody;
 
         public PostJsonRequestTask(JSONObject jsonBody) {

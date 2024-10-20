@@ -34,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
         setupClickListener(R.id.profile_button, ProfileActivity.class);
         setupClickListener(R.id.favourites_button, FavouritesActivity.class);
 
-        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/new_recipes");
-        new GetMostPopularRecipeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/most_popular_recipe");
+        new GetRecipesTask().execute(HTTPHelper.baseUrl + "/new_recipes");
+        new GetMostPopularRecipeTask().execute(HTTPHelper.baseUrl + "/most_popular_recipe");
     }
 
     private class GetRecipesTask extends AsyncTask<String, Void, String> {

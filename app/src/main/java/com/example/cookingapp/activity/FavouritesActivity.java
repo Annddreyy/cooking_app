@@ -54,8 +54,8 @@ public class FavouritesActivity extends AppCompatActivity {
             }
         });
 
-        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourite_recipes/" + getIntent().getIntExtra("client_id", 0));
-        new GetRecipeTypesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_types");
+        new GetRecipesTask().execute(HTTPHelper.baseUrl + "/favourite_recipes/" + getIntent().getIntExtra("client_id", 0));
+        new GetRecipeTypesTask().execute(HTTPHelper.baseUrl + "/recipe_types");
     }
     private class GetRecipesTask extends AsyncTask<String, Void, String> {
 

@@ -63,7 +63,7 @@ public class AutorizationActivity extends AppCompatActivity {
                 errorText.setText("Неверная почта или пароль!");
         });
 
-        new GetAuthorizationTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/authorization");
+        new GetAuthorizationTask().execute(HTTPHelper.baseUrl + "/authorization");
     }
 
     private class GetAuthorizationTask extends AsyncTask<String, Void, String> {

@@ -56,8 +56,8 @@ public class RecipesActivity extends AppCompatActivity {
         });
 
 
-        new GetRecipesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipes");
-        new GetRecipeTypesTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_types");
+        new GetRecipesTask().execute(HTTPHelper.baseUrl + "/recipes");
+        new GetRecipeTypesTask().execute(HTTPHelper.baseUrl + "/recipe_types");
     }
 
     private class GetRecipesTask extends AsyncTask<String, Void, String> {
@@ -258,7 +258,7 @@ public class RecipesActivity extends AppCompatActivity {
             Glide.with(this).load(recipeType.imagePath + "?raw=true").into(imageView);
 
             card.setOnClickListener(view -> {
-                new GetRecipesWithRecipeTypeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_with_recipe_type/" + recipeType.recipe_type_id);
+                new GetRecipesWithRecipeTypeTask().execute(HTTPHelper.baseUrl + "/recipe_with_recipe_type/" + recipeType.recipe_type_id);
             });
 
             categoriesLayout.addView(card);

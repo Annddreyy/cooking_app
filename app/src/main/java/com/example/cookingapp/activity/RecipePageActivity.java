@@ -66,7 +66,7 @@ public class RecipePageActivity extends AppCompatActivity {
                 }
 
                 PostFavourityRecipeTask task = new PostFavourityRecipeTask(jsonObject);
-                task.execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/favourite_recipes");
+                task.execute(HTTPHelper.baseUrl + "/favourite_recipes");
             }
             else {
                 favourityStar.setImageResource(R.drawable.star_icon_red);

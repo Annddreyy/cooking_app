@@ -90,7 +90,7 @@ public class ProfileActivity extends AppCompatActivity {
                     TextView text = findViewById(R.id.registration_title_text);
                     text.setText(e.getMessage());
                 }
-                new PatchJsonRequestTask(jsonObject).execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/client/" + client_id);
+                new PatchJsonRequestTask(jsonObject).execute(HTTPHelper.baseUrl + "/client/" + client_id);
             }
             else {
                 TextView text = findViewById(R.id.error_text3);

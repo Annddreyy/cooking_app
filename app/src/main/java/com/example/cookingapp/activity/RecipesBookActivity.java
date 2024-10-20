@@ -201,7 +201,7 @@ public class RecipesBookActivity extends AppCompatActivity {
             Glide.with(this).load(recipeType.imagePath + "?raw=true").into(imageView);
 
             card.setOnClickListener(view -> {
-                new GetRecipesWithRecipeTypeTask().execute("https://cooking-app-api-andrey2211.amvera.io/api/v1/recipe_with_recipe_type/" + recipeType.recipe_type_id);
+                new GetRecipesWithRecipeTypeTask().execute(HTTPHelper.baseUrl + "/recipe_with_recipe_type/" + recipeType.recipe_type_id);
             });
 
             categoriesLayout.addView(card);

@@ -1,10 +1,5 @@
 package com.example.cookingapp.auxiliary_algorithms;
 
-import android.util.Log;
-import android.widget.EditText;
-
-import com.example.cookingapp.R;
-
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -16,6 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HTTPHelper {
+    public static String baseUrl = "https://cooking-app-api-andrey2211.amvera.io/api/v1";
     public static String createConnectionAndReadData(String connectionUrl) {
         try {
             URL url = new URL(connectionUrl);
