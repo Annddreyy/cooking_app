@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -116,28 +115,7 @@ public class RecipesBookActivity extends AppCompatActivity {
         LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
         recipesLayout.removeAllViews();
         for (Recipe recipe: recipes) {
-            LayoutInflater inflater = LayoutInflater.from(this);
-            View card = inflater.inflate(R.layout.recipe_card, null);
-
-            TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
-            cardTitle.setText(recipe.title);
-
-            TextView calloriesText = card.findViewById(R.id.callories_card_text);
-            calloriesText.setText(String.format("%s калл.", recipe.callories));
-
-            TextView timeText = card.findViewById(R.id.time_card_text);
-            timeText.setText(String.format("%s мин.", recipe.cooking_time));
-
-            ImageView imageView = card.findViewById(R.id.recipe_card_image);
-            Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
-
-            card.setOnClickListener(view -> {
-                Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-                intent.putExtra("recipe_id", recipe.recipe_id);
-                view.getContext().startActivity(intent);});
-
-            recipesLayout.addView(card);
+            recipesLayout.addView(createRecipeCard(recipe));
         }
     }
 
@@ -145,30 +123,8 @@ public class RecipesBookActivity extends AppCompatActivity {
         LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
         recipesLayout.removeAllViews();
         for (Recipe recipe: recipes) {
-            if (recipe.title.toLowerCase().contains(text.toLowerCase())) {
-                LayoutInflater inflater = LayoutInflater.from(this);
-                View card = inflater.inflate(R.layout.recipe_card, null);
-
-                TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
-                cardTitle.setText(recipe.title);
-
-                TextView calloriesText = card.findViewById(R.id.callories_card_text);
-                calloriesText.setText(String.format("%s калл.", recipe.callories));
-
-                TextView timeText = card.findViewById(R.id.time_card_text);
-                timeText.setText(String.format("%s мин.", recipe.cooking_time));
-
-                ImageView imageView = card.findViewById(R.id.recipe_card_image);
-                Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
-
-                card.setOnClickListener(view -> {
-                    Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-                    intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-                    intent.putExtra("recipe_id", recipe.recipe_id);
-                    view.getContext().startActivity(intent);});
-
-                recipesLayout.addView(card);
-            }
+            if (recipe.title.toLowerCase().contains(text.toLowerCase()))
+                recipesLayout.addView(createRecipeCard(recipe));
         }
     }
 
@@ -221,32 +177,34 @@ public class RecipesBookActivity extends AppCompatActivity {
         LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
         recipesLayout.removeAllViews();
         for (Recipe recipe: recipes) {
-            if (recipesIds.contains(recipe.recipe_id)) {
-                LayoutInflater inflater = LayoutInflater.from(this);
-                View card = inflater.inflate(R.layout.recipe_card, null);
-
-                TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
-                cardTitle.setText(recipe.title);
-
-                TextView calloriesText = card.findViewById(R.id.callories_card_text);
-                calloriesText.setText(String.format("%s калл.", recipe.callories));
-
-                TextView timeText = card.findViewById(R.id.time_card_text);
-                timeText.setText(String.format("%s мин.", recipe.cooking_time));
-
-                ImageView imageView = card.findViewById(R.id.recipe_card_image);
-                Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
-
-                card.setOnClickListener(view -> {
-                    Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
-                    intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
-                    intent.putExtra("recipe_id", recipe.recipe_id);
-                    view.getContext().startActivity(intent);
-                });
-
-                recipesLayout.addView(card);
-            }
+            if (recipesIds.contains(recipe.recipe_id))
+                recipesLayout.addView(createRecipeCard(recipe));
         }
+    }
+
+    protected View createRecipeCard(Recipe recipe){
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View card = inflater.inflate(R.layout.recipe_card, null);
+
+        TextView cardTitle = card.findViewById(R.id.recipe_card_title_text);
+        cardTitle.setText(recipe.title);
+
+        TextView calloriesText = card.findViewById(R.id.callories_card_text);
+        calloriesText.setText(String.format("%s калл.", recipe.callories));
+
+        TextView timeText = card.findViewById(R.id.time_card_text);
+        timeText.setText(String.format("%s мин.", recipe.cooking_time));
+
+        ImageView imageView = card.findViewById(R.id.recipe_card_image);
+        Glide.with(this).load(recipe.image_path + "?raw=true").into(imageView);
+
+        card.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), RecipePageActivity.class);
+            intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
+            intent.putExtra("recipe_id", recipe.recipe_id);
+            view.getContext().startActivity(intent);});
+
+        return card;
     }
 
     private void setupClickListener(int viewId, Class<?> targetActivity) {

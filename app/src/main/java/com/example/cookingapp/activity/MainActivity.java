@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(result);
                 LinearLayout recipesLayout = findViewById(R.id.recipe_of_day_card_layout);
-                createRecipeCard(recipesLayout, HTTPObjects.createRecipe(jsonObject));
+                recipesLayout.addView(createRecipeCard(HTTPObjects.createRecipe(jsonObject)));
             } catch (JSONException e) {}
         }
     }
@@ -82,12 +82,10 @@ public class MainActivity extends AppCompatActivity {
     protected void createRecipeCards() {
         LinearLayout recipesLayout = findViewById(R.id.new_recipes_cards);
         recipesLayout.removeAllViews();
-        for (Recipe recipe: recipes) {
-            createRecipeCard(recipesLayout, recipe);
-        }
+        for (Recipe recipe: recipes) recipesLayout.addView(createRecipeCard(recipe));
     }
 
-    protected void createRecipeCard(LinearLayout recipesLayout, Recipe recipe){
+    protected View createRecipeCard(Recipe recipe){
         LayoutInflater inflater = LayoutInflater.from(this);
         View card = inflater.inflate(R.layout.recipe_card, null);
 
@@ -109,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("recipe_id", recipe.recipe_id);
             view.getContext().startActivity(intent);});
 
-        recipesLayout.addView(card);
+        return card;
     }
 
     private void setupClickListener(int viewId, Class<?> targetActivity) {
