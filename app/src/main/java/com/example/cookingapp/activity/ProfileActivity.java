@@ -35,8 +35,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProfileActivity extends AppCompatActivity {
-    boolean choose_image = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

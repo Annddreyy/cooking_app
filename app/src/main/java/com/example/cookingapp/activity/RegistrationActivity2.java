@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cookingapp.R;
+import com.example.cookingapp.auxiliary_algorithms.HTTPHelper;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -122,7 +123,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
 
         private static final String TAG = "PostJsonRequestTask";
 
-        private JSONObject jsonBody; // JSON object to send as the request body
+        private JSONObject jsonBody;
 
         public PostJsonRequestTask(JSONObject jsonBody) {
             this.jsonBody = jsonBody;
@@ -130,37 +131,7 @@ public class RegistrationActivity2 extends AppCompatActivity {
 
         @Override
         protected String doInBackground(String... urls) {
-            try {
-                URL url = new URL(urls[0]);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setDoOutput(true);
-                connection.setDoInput(true);
-                connection.setRequestProperty("Content-Type", "application/json");
-
-                // Send the JSON request body
-                OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-                writer.write(jsonBody.toString());
-                writer.flush();
-                writer.close();
-
-                // Read the response
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
-                }
-                reader.close();
-
-                return response.toString();
-
-            } catch (Exception e) {
-                EditText text = findViewById(R.id.surname_input);
-                text.setText(e.getMessage());
-                Log.d(TAG, "POST Response: " + e.getMessage());
-            }
-            return null;
+            return HTTPHelper.createConnectionAndPostData(urls[0], jsonBody);
         }
 
         @Override
