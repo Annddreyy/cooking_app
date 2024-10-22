@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Bon appetit!</string>
     <string name="recipe_of_day_string">Рецепт дня</string>
-    <string name="cooking_app_string">Ура Кукинг</string>
+    <string name="cooking_app_string">Bon appetit!</string>
     <string name="time_card_string">30 мин.</string>
     <string name="kkal_card_string">250 kkal.</string>
     <string name="recipe_card_title_string">Черничные маффины</string>
