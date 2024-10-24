@@ -3,8 +3,10 @@ package com.example.cookingapp.auxiliary_algorithms;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,8 +26,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class RecipeCard extends AppCompatActivity {
-    ArrayList<Recipe> recipes = new ArrayList<>();
+public class RecipeCardLayout extends AppCompatActivity {
+    protected ArrayList<Recipe> recipes = new ArrayList<>();
     ArrayList<RecipeType> recipeTypes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,5 +179,25 @@ public class RecipeCard extends AppCompatActivity {
             view.getContext().startActivity(intent);});
 
         return card;
+    }
+
+    public void setupClickListener(int viewId, Class<?> targetActivity) {
+        LinearLayout button = findViewById(viewId);
+        if (button != null) {
+            button.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), targetActivity);
+                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
+                startActivity(intent);
+            });
+        }
+    }
+
+    public boolean onKeyPush(View v, int keyCode, KeyEvent event, EditText findText) {
+        if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+            String searchText = findText.getText().toString();
+            findByTitle(searchText);
+            return true;
+        }
+        return false;
     }
 }
