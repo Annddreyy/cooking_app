@@ -32,7 +32,6 @@ public class AutorizationActivity extends AppCompatActivity {
             view.getContext().startActivity(intent);
         });
 
-
         Button autorizationButton = findViewById(R.id.autorization_button);
         autorizationButton.setOnClickListener(view -> {
             String email = emailInput.getText().toString();
@@ -40,7 +39,6 @@ public class AutorizationActivity extends AppCompatActivity {
             String passwordSHA256 = SHA256.calculateSHA256(password);
 
             boolean findUser = false;
-
             for (AuthorizationInfo authorizationInfo: GetAuthorizationTask.authorizationInformation) {
                 if (email.equals(authorizationInfo.email) && passwordSHA256.equals(authorizationInfo.password)) {
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
@@ -50,7 +48,6 @@ public class AutorizationActivity extends AppCompatActivity {
                     break;
                 }
             }
-
             if (!findUser)
                 errorText.setText("Неверная почта или пароль!");
         });

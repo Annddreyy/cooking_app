@@ -46,35 +46,21 @@ public class RecipePageActivity extends AppCompatActivity {
         ImageView favourityStar = findViewById(R.id.favourity_image);
         favourityStar.setOnClickListener(view -> {
             isFavourityRecipe = !isFavourityRecipe;
+
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("client_id", getIntent().getIntExtra("client_id", 0));
+                jsonObject.put("recipe_id", getIntent().getIntExtra("recipe_id", 0));
+
+            } catch (JSONException e) {}
+
             if (isFavourityRecipe) {
                 favourityStar.setImageResource(R.drawable.star_icon_red_fill);
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("client_id", getIntent().getIntExtra("client_id", 0));
-                    jsonObject.put("recipe_id", getIntent().getIntExtra("recipe_id", 0));
-
-                } catch (JSONException e) {
-                    TextView text = findViewById(R.id.registration_title_text);
-                    text.setText(e.getMessage());
-                }
-
-                PostFavourityRecipeTask task = new PostFavourityRecipeTask(jsonObject);
-                task.execute(HTTPHelper.baseUrl + "/favourite_recipes");
+                new PostFavourityRecipeTask(jsonObject).execute(HTTPHelper.baseUrl + "/favourite_recipes");
             }
             else {
                 favourityStar.setImageResource(R.drawable.star_icon_red);
-                JSONObject jsonObject = new JSONObject();
-                try {
-                    jsonObject.put("client_id", getIntent().getIntExtra("client_id", 0));
-                    jsonObject.put("recipe_id", getIntent().getIntExtra("recipe_id", 0));
-
-                } catch (JSONException e) {
-                    TextView text = findViewById(R.id.registration_title_text);
-                    text.setText(e.getMessage());
-                }
-
-                DeleteFavourityRecipeTask task = new DeleteFavourityRecipeTask(jsonObject);
-                task.execute(HTTPHelper.baseUrl + "/favourity_recipes");
+                new DeleteFavourityRecipeTask(jsonObject).execute(HTTPHelper.baseUrl + "/favourity_recipes");
             }
         });
 
@@ -96,20 +82,11 @@ public class RecipePageActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(result);
 
-                TextView titleText = findViewById(R.id.recipe_title);
-                titleText.setText(jsonObject.getString("title"));
-
-                TextView calloriesText = findViewById(R.id.callories_text);
-                calloriesText.setText(String.format("%s ккал.", jsonObject.getString("callories")));
-
-                TextView cookingTimeText = findViewById(R.id.time_text);
-                cookingTimeText.setText(String.format("%s мин.", jsonObject.getString("cooking_time")));
-
-                TextView complexityText = findViewById(R.id.complexity_text);
-                complexityText.setText(jsonObject.getString("complexity"));
-
-                TextView descriptionText = findViewById(R.id.description_text);
-                descriptionText.setText(jsonObject.getString("description"));
+                setTextInTextView(R.id.recipe_title, jsonObject.getString("title"));
+                setTextInTextView(R.id.callories_text, String.format("%s ккал.", jsonObject.getString("callories")));
+                setTextInTextView(R.id.time_text, String.format("%s мин.", jsonObject.getString("cooking_time")));
+                setTextInTextView(R.id.complexity_text, jsonObject.getString("complexity"));
+                setTextInTextView(R.id.description_text, jsonObject.getString("description"));
 
                 ImageView recipeImage = findViewById(R.id.recipe_image);
                 Glide.with(getApplicationContext()).load(jsonObject.getString("image_path") + "?raw=true").into(recipeImage);
@@ -119,7 +96,6 @@ public class RecipePageActivity extends AppCompatActivity {
     }
 
     private class GetRecipeIngredientsTask extends AsyncTask<String, Void, String> {
-
         @Override
         protected String doInBackground(String... urls) {
             return HTTPHelper.createConnectionAndReadData(urls[0]);
@@ -138,17 +114,14 @@ public class RecipePageActivity extends AppCompatActivity {
                     String count = jsonObject.getString("count");
 
                     Ingredient ingredient = new Ingredient(ingredient_id, title, count);
-
                     ingredients.add(ingredient);
                 }
-
                 createIngredientsTable();
             } catch (JSONException e) {}
         }
     }
 
     private class GetRecipeInstructionsTask extends AsyncTask<String, Void, String> {
-
         @Override
         protected String doInBackground(String... urls) {
             return HTTPHelper.createConnectionAndReadData(urls[0]);
@@ -166,17 +139,14 @@ public class RecipePageActivity extends AppCompatActivity {
                     String text = jsonObject.getString("text");
 
                     Instruction instruction = new Instruction(ingredient_id, text);
-
                     instructions.add(instruction);
                 }
-
                 createInstructionsTable();
             } catch (JSONException e) {}
         }
     }
 
     private class GetRecipesTask extends AsyncTask<String, Void, String> {
-
         @Override
         protected String doInBackground(String... urls) {
             return HTTPHelper.createConnectionAndReadData(urls[0]);
@@ -190,7 +160,6 @@ public class RecipePageActivity extends AppCompatActivity {
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     int recipe_id  = jsonObject.getInt("id");
-
                     if (recipe_id == getIntent().getIntExtra("recipe_id", 0)) {
                         isFavourityRecipe = true;
                         break;
@@ -198,12 +167,10 @@ public class RecipePageActivity extends AppCompatActivity {
                 }
 
                 ImageView favourityStar = findViewById(R.id.favourity_image);
-
                 if (isFavourityRecipe)
                     favourityStar.setImageResource(R.drawable.star_icon_red_fill);
                 else
                     favourityStar.setImageResource(R.drawable.star_icon_red);
-
             } catch (JSONException e) {}
         }
     }
@@ -283,5 +250,10 @@ public class RecipePageActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
+    }
+
+    private void setTextInTextView(int id, String text) {
+        TextView titleText = findViewById(id);
+        titleText.setText(text);
     }
 }

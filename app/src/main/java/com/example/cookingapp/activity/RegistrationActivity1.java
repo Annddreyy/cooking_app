@@ -34,7 +34,6 @@ public class RegistrationActivity1 extends AppCompatActivity {
 
         registrationButton.setOnClickListener(view -> {
             TextView errorText = findViewById(R.id.error_text);
-
             errorText.setText("");
 
             String emailText = email.getText().toString();
@@ -45,11 +44,8 @@ public class RegistrationActivity1 extends AppCompatActivity {
                 Matcher matcher = pattern.matcher(emailText);
 
                 boolean isCorrectEmail = matcher.find();
-
                 if (passwordText.length() >= 8 && isCorrectEmail) {
-
                     boolean isNewEmail = true;
-
                     for (AuthorizationInfo authorizationInfo: GetAuthorizationTask.authorizationInformation) {
                         if (Objects.equals(authorizationInfo.email, emailText)) {
                             errorText.setText("Пользователь с такой почтой уже существует!");

@@ -82,10 +82,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                     jsonObject.put("image_path", encodedImage);
 
-                } catch (JSONException e) {
-                    TextView text = findViewById(R.id.registration_title_text);
-                    text.setText(e.getMessage());
-                }
+                } catch (JSONException e) {}
                 new PatchJsonRequestTask(jsonObject).execute(HTTPHelper.baseUrl + "/client/" + client_id);
             }
             else {
@@ -108,26 +105,20 @@ public class ProfileActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(result);
 
-                String surname = jsonObject.getString("surname");
-                String name = jsonObject.getString("name");
-                String patronymic = jsonObject.getString("patronymic");
-                String phone = jsonObject.getString("phone");
-                String image_path = jsonObject.getString("image_path");
-
                 EditText surnameInput = findViewById(R.id.surname_input);
-                surnameInput.setHint(surname);
+                surnameInput.setHint(jsonObject.getString("surname"));
 
                 EditText nameInput = findViewById(R.id.name_input);
-                nameInput.setHint(name);
+                nameInput.setHint(jsonObject.getString("name"));
 
                 EditText patronymicInput = findViewById(R.id.patronymic_input);
-                patronymicInput.setHint(patronymic);
+                patronymicInput.setHint(jsonObject.getString("patronymic"));
 
                 EditText phoneInput = findViewById(R.id.phone_input);
-                phoneInput.setHint(phone);
+                phoneInput.setHint(jsonObject.getString("phone"));
 
                 ImageView image = findViewById(R.id.profile_user_image);
-                Glide.with(getApplicationContext()).load(image_path + "?raw=true").into(image);
+                Glide.with(getApplicationContext()).load(jsonObject.getString("image_path") + "?raw=true").into(image);
 
             } catch (JSONException e) {}
         }
@@ -139,13 +130,10 @@ public class ProfileActivity extends AppCompatActivity {
         ImageView photoImage = findViewById(R.id.profile_user_image);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri uri = data.getData();
-
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 photoImage.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            } catch (IOException e) {}
         }
     }
 

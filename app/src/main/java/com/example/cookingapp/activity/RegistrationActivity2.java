@@ -60,7 +60,6 @@ public class RegistrationActivity2 extends AppCompatActivity {
                 Matcher matcher = pattern.matcher(phone);
 
                 boolean isCorrectPhone = matcher.find();
-
                 if (isCorrectPhone) {
                     JSONObject jsonObject = new JSONObject();
                     try {

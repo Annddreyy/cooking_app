@@ -12,9 +12,7 @@ public class SHA256 {
             byte[] hash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
             return bytesToHex(hash);
         }
-        catch (NoSuchAlgorithmException e) {
-            System.out.println(e.getMessage());
-        }
+        catch (NoSuchAlgorithmException e) {}
         return "Error";
     }
 
