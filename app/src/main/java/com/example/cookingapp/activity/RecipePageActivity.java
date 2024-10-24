@@ -51,7 +51,6 @@ public class RecipePageActivity extends AppCompatActivity {
             try {
                 jsonObject.put("client_id", getIntent().getIntExtra("client_id", 0));
                 jsonObject.put("recipe_id", getIntent().getIntExtra("recipe_id", 0));
-
             } catch (JSONException e) {}
 
             if (isFavourityRecipe) {
@@ -253,7 +252,7 @@ public class RecipePageActivity extends AppCompatActivity {
     }
 
     private void setTextInTextView(int id, String text) {
-        TextView titleText = findViewById(id);
-        titleText.setText(text);
+        TextView textView = findViewById(id);
+        textView.setText(text);
     }
 }

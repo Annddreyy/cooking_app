@@ -61,7 +61,6 @@ public class ProfileActivity extends AppCompatActivity {
             Matcher matcher = pattern.matcher(phoneInput.getText().toString());
 
             boolean isCorrectPhone = matcher.find();
-
             if (isCorrectPhone || phoneInput.getText().toString().isEmpty()) {
                 JSONObject jsonObject = new JSONObject();
                 try {
@@ -105,17 +104,10 @@ public class ProfileActivity extends AppCompatActivity {
             try {
                 JSONObject jsonObject = new JSONObject(result);
 
-                EditText surnameInput = findViewById(R.id.surname_input);
-                surnameInput.setHint(jsonObject.getString("surname"));
-
-                EditText nameInput = findViewById(R.id.name_input);
-                nameInput.setHint(jsonObject.getString("name"));
-
-                EditText patronymicInput = findViewById(R.id.patronymic_input);
-                patronymicInput.setHint(jsonObject.getString("patronymic"));
-
-                EditText phoneInput = findViewById(R.id.phone_input);
-                phoneInput.setHint(jsonObject.getString("phone"));
+                setHintInEditText(R.id.surname_input, jsonObject.getString("surname"));
+                setHintInEditText(R.id.name_input, jsonObject.getString("name"));
+                setHintInEditText(R.id.patronymic_input, jsonObject.getString("patronymic"));
+                setHintInEditText(R.id.patronymic_input, jsonObject.getString("phone"));
 
                 ImageView image = findViewById(R.id.profile_user_image);
                 Glide.with(getApplicationContext()).load(jsonObject.getString("image_path") + "?raw=true").into(image);
@@ -159,5 +151,10 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
+    }
+
+    private void setHintInEditText(int id, String text) {
+        EditText editText = findViewById(id);
+        editText.setHint(text);
     }
 }
