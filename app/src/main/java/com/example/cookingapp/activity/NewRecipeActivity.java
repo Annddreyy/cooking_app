@@ -15,7 +15,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -60,7 +59,6 @@ public class NewRecipeActivity extends AppCompatActivity {
         addIngredientButton.setOnClickListener(view -> {
             LayoutInflater inflater = LayoutInflater.from(this);
             LinearLayout addIngredientInput = (LinearLayout) inflater.inflate(R.layout.ingredient_input, null);
-
             ingredientsLayout.addView(addIngredientInput);
             ingredients.add(addIngredientInput);
         });
@@ -71,7 +69,6 @@ public class NewRecipeActivity extends AppCompatActivity {
         addInstructionButton.setOnClickListener(view -> {
             LayoutInflater inflater = LayoutInflater.from(this);
             EditText addInstructionInput = (EditText) inflater.inflate(R.layout.instruction_input, null);
-
             instructionsLayout.addView(addInstructionInput);
             instructions.add(addInstructionInput);
         });

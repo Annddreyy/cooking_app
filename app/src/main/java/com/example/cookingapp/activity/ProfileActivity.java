@@ -107,7 +107,7 @@ public class ProfileActivity extends AppCompatActivity {
                 setHintInEditText(R.id.surname_input, jsonObject.getString("surname"));
                 setHintInEditText(R.id.name_input, jsonObject.getString("name"));
                 setHintInEditText(R.id.patronymic_input, jsonObject.getString("patronymic"));
-                setHintInEditText(R.id.patronymic_input, jsonObject.getString("phone"));
+                setHintInEditText(R.id.phone_input, jsonObject.getString("phone"));
 
                 ImageView image = findViewById(R.id.profile_user_image);
                 Glide.with(getApplicationContext()).load(jsonObject.getString("image_path") + "?raw=true").into(image);
