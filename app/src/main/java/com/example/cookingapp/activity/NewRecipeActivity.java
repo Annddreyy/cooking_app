@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -47,6 +49,9 @@ public class NewRecipeActivity extends AppCompatActivity {
         setupClickListener(R.id.favourites_button, FavouritesActivity.class);
 
         addSpinner(R.id.complexity_spinner, R.array.complexity_array);
+
+        TextView errorText = findViewById(R.id.add_recipe_error_text);
+        errorText.setText("");
 
         Button changeImage = findViewById(R.id.button);
         changeImage.setOnClickListener(view -> {
@@ -97,62 +102,89 @@ public class NewRecipeActivity extends AppCompatActivity {
             String time = ((EditText)findViewById(R.id.time_input)).getText().toString();
             String complexity = ((Spinner)findViewById(R.id.complexity_spinner)).getSelectedItem().toString();
 
-            ArrayList<ArrayList<String>> ingredientsList = new ArrayList<>();
-            for (LinearLayout ingredient: ingredients) {
-                String titleOfIngredient = ((EditText)ingredient.findViewById(R.id.title_of_ingredient_input)).getText().toString();
-                String countOfIngredient = ((EditText)ingredient.findViewById(R.id.count_of_ingredient_input)).getText().toString();
-                ingredientsList.add(new ArrayList<>(Arrays.asList(titleOfIngredient, countOfIngredient)));
-            }
-
-            ArrayList<String> instructionsList = new ArrayList<>();
-            for (EditText ingredient: instructions) {
-                instructionsList.add(ingredient.getText().toString());
-            }
-
-            ArrayList<String> recipeTypesList = new ArrayList<>();
-            for (Spinner recipeType: recipeTypesSpinners) {
-                recipeTypesList.add(recipeType.getSelectedItem().toString());
-            }
-
-            JSONObject recipeInformation = new JSONObject();
-            try {
-                recipeInformation.put("title", title);
-                recipeInformation.put("description", description);
-                recipeInformation.put("callories", callories);
-                recipeInformation.put("time", time);
-                recipeInformation.put("complexity", complexity);
-
-                JSONArray jsonIngredientsArray = new JSONArray();
+            if (!title.isEmpty() && !description.isEmpty() && !callories.isEmpty() && !time.isEmpty() && !complexity.isEmpty()) {
+                boolean ingredientNotEmpty = !ingredients.isEmpty();
+                ArrayList<ArrayList<String>> ingredientsList = new ArrayList<>();
                 for (LinearLayout ingredient: ingredients) {
-                    JSONArray ingredientDescription = new JSONArray();
-                    EditText ingredientTitle = ingredient.findViewById(R.id.title_of_ingredient_input);
-                    EditText ingredientCount = ingredient.findViewById(R.id.count_of_ingredient_input);
-                    ingredientDescription.put(ingredientTitle.getText().toString());
-                    ingredientDescription.put(ingredientCount.getText().toString());
-                    jsonIngredientsArray.put(ingredientDescription);
+                    String titleOfIngredient = ((EditText)ingredient.findViewById(R.id.title_of_ingredient_input)).getText().toString();
+                    String countOfIngredient = ((EditText)ingredient.findViewById(R.id.count_of_ingredient_input)).getText().toString();
+                    if (!titleOfIngredient.isEmpty() && !countOfIngredient.isEmpty()) {
+                        ingredientsList.add(new ArrayList<>(Arrays.asList(titleOfIngredient, countOfIngredient)));
+                    }
+                    else {
+                        ingredientNotEmpty = false;
+                        break;
+                    }
                 }
 
-                JSONArray jsonInstructionsArray = new JSONArray();
-                for (String string : instructionsList) jsonInstructionsArray.put(string);
+                boolean instructionNotEmpty = !instructions.isEmpty();
+                ArrayList<String> instructionsList = new ArrayList<>();
+                for (EditText instruction: instructions) {
+                    String instructionText = instruction.getText().toString();
+                    if (!instructionText.isEmpty())
+                        instructionsList.add(instructionText);
+                    else {
+                        instructionNotEmpty = false;
+                        break;
+                    }
+                }
 
-                JSONArray jsonRecipeTypesArray = new JSONArray();
-                for (String string : recipeTypesList) jsonRecipeTypesArray.put(string);
+                boolean recipeTypesNotEmpty = !recipeTypesSpinners.isEmpty();
+                ArrayList<String> recipeTypesList = new ArrayList<>();
+                for (Spinner recipeType: recipeTypesSpinners) {
+                    recipeTypesList.add(recipeType.getSelectedItem().toString());
+                }
 
-                recipeInformation.put("ingredients", jsonIngredientsArray);
-                recipeInformation.put("instructions", jsonInstructionsArray);
-                recipeInformation.put("recipe_types", jsonRecipeTypesArray);
+                if (ingredientNotEmpty && instructionNotEmpty && recipeTypesNotEmpty) {
+                    JSONObject recipeInformation = new JSONObject();
+                    try {
+                        recipeInformation.put("title", title);
+                        recipeInformation.put("description", description);
+                        recipeInformation.put("callories", callories);
+                        recipeInformation.put("time", time);
+                        recipeInformation.put("complexity", complexity);
 
-                Bitmap bitmap = ((BitmapDrawable) ((ImageView)(findViewById(R.id.recipe_photo))).getDrawable()).getBitmap();
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                byte[] imageBytes = stream.toByteArray();
-                String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                        JSONArray jsonIngredientsArray = new JSONArray();
+                        for (LinearLayout ingredient: ingredients) {
+                            JSONArray ingredientDescription = new JSONArray();
+                            EditText ingredientTitle = ingredient.findViewById(R.id.title_of_ingredient_input);
+                            EditText ingredientCount = ingredient.findViewById(R.id.count_of_ingredient_input);
+                            ingredientDescription.put(ingredientTitle.getText().toString());
+                            ingredientDescription.put(ingredientCount.getText().toString());
+                            jsonIngredientsArray.put(ingredientDescription);
+                        }
 
-                recipeInformation.put("image_path", encodedImage);
-                recipeInformation.put("client_id", getIntent().getIntExtra("client_id", 0));
+                        JSONArray jsonInstructionsArray = new JSONArray();
+                        for (String string : instructionsList) jsonInstructionsArray.put(string);
 
-                new PostJsonRequestTask(recipeInformation).execute(HTTPHelper.baseUrl + "/recipe");
-            } catch (JSONException e) {}
+                        JSONArray jsonRecipeTypesArray = new JSONArray();
+                        for (String string : recipeTypesList) jsonRecipeTypesArray.put(string);
+
+                        recipeInformation.put("ingredients", jsonIngredientsArray);
+                        recipeInformation.put("instructions", jsonInstructionsArray);
+                        recipeInformation.put("recipe_types", jsonRecipeTypesArray);
+
+                        Bitmap bitmap = ((BitmapDrawable) ((ImageView)(findViewById(R.id.recipe_photo))).getDrawable()).getBitmap();
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                        byte[] imageBytes = stream.toByteArray();
+                        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+
+                        recipeInformation.put("image_path", encodedImage);
+                        recipeInformation.put("client_id", getIntent().getIntExtra("client_id", 0));
+
+                        errorText.setText("");
+                        Toast toast = Toast.makeText(this, "Рецепт успешно добавлен! Приятного аппетита!", Toast.LENGTH_LONG);
+                        toast.show();
+
+                        new PostJsonRequestTask(recipeInformation).execute(HTTPHelper.baseUrl + "/recipe");
+                    } catch (JSONException e) {}
+                }
+                else
+                    errorText.setText("Заполните все поля!");
+            }
+            else
+                errorText.setText("Заполните все поля!");
         });
 
         new GetRecipeTypesTask().execute(HTTPHelper.baseUrl + "/recipe_types");
