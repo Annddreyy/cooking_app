@@ -1,8 +1,10 @@
 package com.example.cookingapp.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.cookingapp.R;
@@ -25,6 +27,13 @@ public class RecipesBookActivity extends RecipeCardLayout {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 return onKeyPush(v, keyCode, event, findText);
             }
+        });
+
+        Button newRecipe = findViewById(R.id.add_recipe_button);
+        newRecipe.setOnClickListener(view -> {
+                Intent intent = new Intent(view.getContext(), NewRecipeActivity.class);
+                intent.putExtra("client_id", getIntent().getIntExtra("client_id", 0));
+                startActivity(intent);
         });
 
         new GetRecipesTask().execute(HTTPHelper.baseUrl + "/user_recipes/" + + getIntent().getIntExtra("client_id", 0));

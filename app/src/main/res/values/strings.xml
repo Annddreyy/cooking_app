@@ -59,23 +59,8 @@
     <string name="complexity_of_cooking_string">Сложность готовки</string>
     <string name="registration_link_on_authorization_screen">Зарегестрироваться</string>
     <string name="have_not_account_string">Нет аккаунта?</string>
-    <string-array name="callories_array">
-        <item>0-50 kcal.</item>
-        <item>50-100 kcal.</item>
-        <item>100-200 kcal.</item>
-        <item>200-300 kcal.</item>
-        <item>300-500 kcal.</item>
-        <item>500-700 kcal.</item>
-        <item>700+ kcal.</item>
-    </string-array>
-    <string-array name="times_array">
-        <item>1 - 5 мин.</item>
-        <item>5 - 15 мин.</item>
-        <item>15 - 30 мин.</item>
-        <item>30 - 60 мин.</item>
-        <item>60 - 90 мин.</item>
-        <item>90+ мин.</item>
-    </string-array>
+    <string name="recipe_type_string">Тип рецепта</string>
+    <string name="enter_recipe_type_string">Введите тип рецепта</string>
     <string-array name="complexity_array">
         <item>Легкий</item>
         <item>Средний</item>
