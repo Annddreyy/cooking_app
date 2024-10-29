@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class RecipeCardLayout extends AppCompatActivity {
     protected ArrayList<Recipe> recipes = new ArrayList<>();
@@ -112,11 +114,20 @@ public class RecipeCardLayout extends AppCompatActivity {
     }
 
     protected void findByTitle(String text) {
+        int count = 0;
         LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
         recipesLayout.removeAllViews();
-        for (Recipe recipe: recipes) {
-            if (recipe.title.toLowerCase().contains(text.toLowerCase()))
-                recipesLayout.addView(createRecipeCard(recipe));
+        if (!recipes.isEmpty()) {
+            for (Recipe recipe: recipes) {
+                if (recipe.title.toLowerCase().contains(text.toLowerCase())) {
+                    count += 1;
+                    recipesLayout.addView(createRecipeCard(recipe));
+                }
+            }
+        }
+        if (count == 0) {
+            Toast toast = Toast.makeText(this, "Рецептов не найдено!", Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 
@@ -127,11 +138,20 @@ public class RecipeCardLayout extends AppCompatActivity {
     }
 
     private void createRecipeCardsWithType(ArrayList<Integer> recipesIds) {
+        int count = 0;
         LinearLayout recipesLayout = findViewById(R.id.recipes_cards);
         recipesLayout.removeAllViews();
-        for (Recipe recipe: recipes) {
-            if (recipesIds.contains(recipe.recipe_id))
-                recipesLayout.addView(createRecipeCard(recipe));
+        if (!recipes.isEmpty()) {
+            for (Recipe recipe: recipes) {
+                if (recipesIds.contains(recipe.recipe_id)) {
+                    count += 1;
+                    recipesLayout.addView(createRecipeCard(recipe));
+                }
+            }
+        }
+        if (count == 0) {
+            Toast toast = Toast.makeText(this, "Рецептов не найдено!", Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 

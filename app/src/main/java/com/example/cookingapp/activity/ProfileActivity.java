@@ -57,7 +57,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             ImageView photoImage = findViewById(R.id.profile_user_image);
 
-            Pattern pattern = Pattern.compile("\\+\\d\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}");
+            Pattern pattern = Pattern.compile("^\\+\\d\\(\\d{3}\\)\\d{3}-\\d{2}-\\d{2}$");
             Matcher matcher = pattern.matcher(phoneInput.getText().toString());
 
             boolean isCorrectPhone = matcher.find();
