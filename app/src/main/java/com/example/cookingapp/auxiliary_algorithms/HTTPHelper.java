@@ -11,7 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HTTPHelper {
-    public static String baseUrl = "https://cooking-app-api-andrey2211.amvera.io/api/v1";
+    public static String baseUrl = "https://cooking-app-api-koiikf.amvera.io/api/v1";
 
     public static String createConnectionAndReadData(String connectionUrl) {
         try {
